@@ -6,7 +6,9 @@ export default function Header() {
   return (
     <header>
       <img className="header-img" src={movie} />
-      <h1>Nos Cinema</h1>
+      <h1>
+        Nos Cinema <span>Sheffield</span>
+      </h1>
       <Link to="/login">
         <button>
           <img className="header-img" src={user} />

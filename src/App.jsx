@@ -10,7 +10,6 @@ import AdminPage from "./pages/AdminPage";
 import GuestPage from "./pages/GuestPage";
 import FilmDetailPage from "./pages/FilmDetail";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 function App() {
   return (
     <div className="App">
@@ -28,7 +27,6 @@ function App() {
             <Route path="*" component={PageNotFound} />
           </Switch>
         </main>
-        <Footer />
       </div>
     </div>
   );

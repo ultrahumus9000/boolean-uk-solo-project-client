@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import eyeclose from "../asset/eyeclose.svg";
 import eyeopen from "../asset/eyeopen.svg";
 
@@ -24,6 +25,7 @@ export default function LoginPage() {
           type={`${seePassword ? "text" : "password"}`}
           placeholder="Password"
         />
+        <input className="input-submit" type="submit" value="SUBMIT" />
         {seePassword ? (
           <button className="button-eye" type="button" onClick={togglePassword}>
             <img className="eye" src={eyeopen} />
@@ -35,9 +37,11 @@ export default function LoginPage() {
         )}
         <p>
           Dont have a account? Register{" "}
-          <button className="sign-up-button" type="button">
-            here
-          </button>
+          <Link to="/signup">
+            <button className="sign-up-button" type="button">
+              here
+            </button>
+          </Link>
         </p>
       </form>
     </div>

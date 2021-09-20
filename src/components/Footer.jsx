@@ -1,3 +1,8 @@
 export default function Footer() {
-  return <div>i am here</div>;
+  return (
+    <footer>
+      {" "}
+      <span>&#169; Linlin Li</span>
+    </footer>
+  );
 }

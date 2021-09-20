@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.root {
+  --light-yellow: navajowhite;
+}
 /* not found page */
 .not-found {
   display: grid;
@@ -11,6 +14,75 @@
 .not-found-img {
   width: 100px;
   animation: cinema 1s ease-in-out;
+}
+/* header */
+.header-img {
+  width: 50px;
+}
+header {
+  background-color: navajowhite;
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+header h1 {
+  justify-self: start;
+}
+header button {
+  border: none;
+  background-color: transparent;
+  justify-self: end;
+}
+footer {
+  background-color: navajowhite;
+  padding: 5px;
+}
+.main {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 10fr 0.5fr;
+}
+main {
+  background-color: black;
+  display: grid;
+  place-content: center;
+}
+.login-div {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: navajowhite;
+}
+.login-div h2 {
+  margin-bottom: 10px;
+}
+.login-div form {
+  display: grid;
+  grid-gap: 5px;
+  position: relative;
+}
+.login-div form input {
+  border: none;
+  height: 30px;
+  padding-left: 20px;
+  border-radius: 5px;
+}
+.sign-up-button {
+  background-color: lightcoral;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+.button-eye {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  right: 5px;
+  top: 40px;
+}
+.eye {
+  width: 20px;
 }
 @keyframes cinema {
   from {

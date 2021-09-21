@@ -1,14 +1,49 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import eyeclose from "../asset/eyeclose.svg";
 import eyeopen from "../asset/eyeopen.svg";
+import useStore from "../store";
 
 export default function LoginPage() {
   const [seePassword, setSeePassword] = useState(false);
 
+  const setCurrentUser = useStore((store) => store.setCurrentUser);
+  const history = useHistory();
+
+  function loginUser(userCreds) {
+    return fetch("http://localhost:4000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userCreds),
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((userFromServer) => {
+        if (userFromServer.role === "Admin") {
+          setCurrentUser(userFromServer);
+          history.push("/admin");
+        } else if (userFromServer.role === "Guest") {
+          setCurrentUser(userFromServer);
+          history.push("/");
+        } else {
+          alert("User Info doesnt match");
+        }
+      });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("i submit");
+
+    const userInfo = {
+      username: e.target.username.value,
+      password: e.target.password.value,
+    };
+
+    loginUser(userInfo).then(() => {
+      e.target.reset();
+    });
   }
 
   function togglePassword() {
@@ -19,9 +54,10 @@ export default function LoginPage() {
     <div className="login-div">
       <h2>Log In to Nos Cinema</h2>
       <form onSubmit={handleSubmit}>
-        <input placeholder="Username" />
+        <input name="username" placeholder="Username" />
         <input
           id="password"
+          name="password"
           type={`${seePassword ? "text" : "password"}`}
           placeholder="Password"
         />

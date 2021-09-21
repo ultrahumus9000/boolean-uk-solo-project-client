@@ -10,6 +10,7 @@
   grid-template-columns: auto auto;
   align-items: center;
   place-content: center;
+  color: white;
 }
 .not-found-img {
   width: 100px;
@@ -22,10 +23,25 @@
 header {
   background-color: navajowhite;
   display: grid;
-  grid-template-columns: 1fr 9fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
+}
+
+.header-with-user {
+  grid-template-columns: 1fr 4fr 1fr 1fr;
+}
+.log-out {
+  font-weight: bolder;
+  font-size: 1.1rem;
+  border: 2px dashed black;
+  padding: 5px 10px;
+}
+.log-out:hover {
+  transform: scale(1.1);
+  background-color: orange;
 }
 header h1 {
   justify-self: start;
@@ -40,11 +56,13 @@ header button {
   height: 100vh;
   display: grid;
   grid-template-rows: 1fr 10fr;
+  overflow: scroll;
 }
 main {
   background-color: black;
   display: grid;
   place-content: center;
+  padding: 20px;
 }
 .login-div,
 .sign-up-div {
@@ -105,12 +123,79 @@ main {
   transform: scale(1.1);
   filter: brightness(1.3);
 }
+.movie-container {
+  grid-template-columns: auto;
+  gap: 10px;
+}
+.film-card {
+  color: white;
+  border: 2px dashed mediumturquoise;
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+}
+.movie-features {
+  background: linear-gradient(30deg, mediumslateblue, mediumspringgreen);
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: black;
+}
 
+.movie-duration {
+  border: 2px solid mediumturquoise;
+  padding: 3px 10px;
+}
+.movie-info {
+  display: grid;
+  justify-items: start;
+  gap: 5px;
+}
+.movie-info p {
+  text-align: left;
+}
+.movie-date {
+  color: navajowhite;
+}
+
+.time-selection {
+  padding: 5px;
+}
+.show-time {
+  background-color: tomato;
+  padding: 3px 10px;
+  margin: 0px 5px 0px 5px;
+  border-radius: 4px;
+}
+.buy-btn {
+  border: 2px dashed red;
+  background-color: tomato;
+  padding: 5px 10px;
+  font-weight: bolder;
+}
+.buy-btn:hover {
+  filter: brightness(1.1);
+}
+.admin-div h1 {
+  color: white;
+}
 @keyframes cinema {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .film-card {
+    grid-template-columns: auto;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .span-show-time {
+    display: none;
   }
 }

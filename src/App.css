@@ -69,7 +69,7 @@ main {
 .sign-up-div {
   padding: 20px;
   border-radius: 10px;
-  background-color: navajowhite;
+  border: 2px dashed mediumturquoise;
 }
 .login-div h2,
 .sign-up-div h2 {
@@ -194,50 +194,25 @@ main {
 .create-event-btn:hover {
   transform: scale(1.1);
 }
-.movie-checkbox {
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
+.checkbox-section {
+  list-style: none;
+  line-height: 2.5rem;
 }
-.movie-label {
-  background-color: mediumslateblue;
-  padding: 5px;
-  border-radius: 2px;
-  border: 2px dashed mediumspringgreen;
+.movie-checkbox {
+  display: none;
 }
 
-/* .movie-checkbox + .movie-label {
+input[type="checkbox"] + label {
   background-color: mediumslateblue;
-  padding: 5px;
+  padding: 3px;
   border-radius: 2px;
-  border: 2px dashed mediumspringgreen;
-} */
-.movie-checkbox input[type="checkbox"] + label {
-  background-color: mediumslateblue;
-  padding: 5px;
-  border-radius: 2px;
-  border: 2px dashed mediumspringgreen;
+  border: 2px dashed cyan;
 }
-.movie-checkbox input[type="checkbox"]:hover + label {
+
+input[type="checkbox"]:checked + label {
   background-color: #ff8e3c;
-  color: #eff0f3;
+  color: black;
 }
-/* input[type="checkbox"] + label {
-  color: #2a2a2a;
-  border-radius: 30px;
-  padding: 8px 15px;
-  background-color: indianred;
-} */
-/* <div className="checkbox-section">
-<label className="movie-label" htmlFor={movie.title}>
-  {movie.title}{" "}
-</label>
-<input
-  type="checkbox"
-  className="movie-checkbox"
-  id={movie.title}
-/>
-</div> */
 
 @keyframes cinema {
   from {

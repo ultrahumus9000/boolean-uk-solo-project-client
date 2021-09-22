@@ -1,6 +1,4 @@
-import { useState } from "react/cjs/react.development";
 import AddNewEventForm from "../components/AddNewEventForm";
-import useStore from "../store";
 
 // id           Int           @id @default(autoincrement())
 // movie        Movie         @relation(fields: [movieId], references: [id], onDelete: Cascade)

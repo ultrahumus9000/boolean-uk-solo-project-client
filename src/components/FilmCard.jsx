@@ -8,25 +8,25 @@ export default function FilmCard({ movie }) {
   //   "poster": "https://image.tmdb.org/t/p/w342/qD45xHA35HdJDGOaA1AgDwiWEgO.jpg",
   //   "duration": "100 mins"
   // }
-  return (
-    <div className="film-card">
-      <img src={movie.poster} alt="" />
-      <div className="movie-info">
-        <p className={`${movie.genre} movie-features `}>{movie.genre}</p>
-        <p className="movie-date">Release Date {movie.releaseDate}</p>
-        <p className="movie-title">{movie.title}</p>
-        <p className="movie-overview">Overview: {movie.overview}</p>
-        <p>
-          <span className="movie-duration"> {movie.duration}</span>{" "}
-          <button className="buy-btn"> Buy Ticket</button>
-        </p>
-        <section className="time-selection">
-          <span className="span-show-time">SHOW TIME </span>
-          <span className="show-time">6:00pm</span>
-          <span className="show-time">8:30pm</span>
-          <span className="show-time">11:00pm</span>
-        </section>
-      </div>
-    </div>
-  );
+  // return (
+  //   <div className="film-card">
+  //     <img src={movie.poster} alt="" />
+  //     <div className="movie-info">
+  //       <p className={`${movie.genre} movie-features `}>{movie.genre}</p>
+  //       <p className="movie-date">Release Date {movie.releaseDate}</p>
+  //       <p className="movie-title">{movie.title}</p>
+  //       <p className="movie-overview">Overview: {movie.overview}</p>
+  //       <p>
+  //         <span className="movie-duration"> {movie.duration}</span>{" "}
+  //         <button className="buy-btn"> Buy Ticket</button>
+  //       </p>
+  //       <section className="time-selection">
+  //         <span className="span-show-time">SHOW TIME </span>
+  //         <span className="show-time">6:00pm</span>
+  //         <span className="show-time">8:30pm</span>
+  //         <span className="show-time">11:00pm</span>
+  //       </section>
+  //     </div>
+  //   </div>
+  // );
 }

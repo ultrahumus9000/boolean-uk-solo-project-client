@@ -15,6 +15,16 @@ const useStore = create((set, get) => ({
         set({ movies: moviesFromServer });
       });
   },
+  cinema: {},
+  getCinemaInfo: () => {
+    fetch(`${baseUrl}/cinema`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((cinema) => {
+        set({ cinema });
+      });
+  },
 }));
 
 export default useStore;

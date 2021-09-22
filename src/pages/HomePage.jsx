@@ -5,10 +5,6 @@ import useStore from "../store";
 
 export default function HomePage() {
   const movies = useStore((store) => store.movies);
-  const fetchAllMovies = useStore((store) => store.fetchAllMovies);
-  useEffect(() => {
-    fetchAllMovies();
-  }, []);
 
   if (movies.length === 0) {
     return <Loading />;
@@ -17,7 +13,7 @@ export default function HomePage() {
   return (
     <div className="movie-container">
       {movies.map((movie) => {
-        return <FilmCard key={movie.id} movie={movie} />;
+        // return <FilmCard key={movie.id} movie={movie} />;
       })}
     </div>
   );

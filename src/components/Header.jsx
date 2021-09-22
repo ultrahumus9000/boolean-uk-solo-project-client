@@ -1,6 +1,7 @@
 import { Link, useHistory } from "react-router-dom";
 import movie from "../asset/movie.svg";
 import user from "../asset/user.svg";
+import admin from "../asset/admin.svg";
 import useStore from "../store";
 
 export default function Header() {
@@ -25,7 +26,10 @@ export default function Header() {
       </h1>
       <Link to="/login">
         <button className="user-icon">
-          <img className="header-img" src={user} />
+          <img
+            className="header-img"
+            src={currentUser.role === "Admin" ? admin : user}
+          />
         </button>
       </Link>
       {currentUser.role && (

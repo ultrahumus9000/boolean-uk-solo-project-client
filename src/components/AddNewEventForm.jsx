@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import useStore from "../store";
+
 export default function AddNewEventForm() {
   const [createNewEvent, setCreateNewEvent] = useState(false);
   const today = new Date().toISOString();
@@ -50,7 +51,7 @@ export default function AddNewEventForm() {
       {createNewEvent && (
         <form className="agenda-form" onSubmit={handleSubmit}>
           <input type="date" min={modifiedToday} />
-          <ul>
+          <ul className="movie-list">
             {movies.map((movie) => {
               return (
                 <li className="checkbox-section">

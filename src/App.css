@@ -181,7 +181,11 @@ main {
 }
 /* admin page */
 .admin-div {
-  color: white;
+  color: #ffffff;
+  display: grid;
+  width: 80vw;
+  grid-template-columns: auto auto auto;
+  background: cyan;
 }
 .create-event-btn {
   color: black;
@@ -206,14 +210,50 @@ input[type="checkbox"] + label {
   background-color: mediumslateblue;
   padding: 3px;
   border-radius: 2px;
-  border: 2px dashed cyan;
+  border: 2px dashed #00ffff;
 }
 
 input[type="checkbox"]:checked + label {
   background-color: #ff8e3c;
   color: black;
 }
+.cinema-info {
+  border: 2px dashed mediumturquoise;
+  border-radius: 10px;
+  display: grid;
+  justify-content: center;
+  padding: 5px 10px;
+  width: fit-content;
+}
 
+.staff-name {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  width: 200px;
+
+  align-items: center;
+  border: 2px dashed mediumturquoise;
+  margin: 5px;
+}
+
+.employee-pic {
+  width: 30px;
+}
+.cinema-location {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+.cinema-info section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+.cinema-info button {
+  padding: 5px 10px;
+  border-radius: 5px;
+}
 @keyframes cinema {
   from {
     transform: rotate(0deg);

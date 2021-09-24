@@ -29,4 +29,5 @@ export default function FilmCard({ movie }) {
   //     </div>
   //   </div>
   // );
+  return null;
 }

@@ -25,6 +25,15 @@ const useStore = create((set, get) => ({
         set({ cinema });
       });
   },
+  policy: {},
+  getPolicy: () => {
+    fetch(`${baseUrl}/policy`, { credentials: "include" })
+      .then((resp) => resp.json())
+      .then((policy) => {
+        set({ policy });
+      });
+  },
+  modifyPolicy: () => {},
 }));
 
 export default useStore;

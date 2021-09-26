@@ -183,9 +183,10 @@ main {
 .admin-div {
   color: #ffffff;
   display: grid;
-  width: 80vw;
+  width: 90vw;
   grid-template-columns: auto auto auto;
-  background: cyan;
+  border: 2px dashed mediumturquoise;
+  padding: 10px;
 }
 .create-event-btn {
   color: black;
@@ -230,7 +231,6 @@ input[type="checkbox"]:checked + label {
   display: grid;
   grid-template-columns: 1fr 2fr 2fr;
   width: 200px;
-
   align-items: center;
   border: 2px dashed mediumturquoise;
   margin: 5px;
@@ -253,6 +253,18 @@ input[type="checkbox"]:checked + label {
 .cinema-info button {
   padding: 5px 10px;
   border-radius: 5px;
+}
+.policy-section {
+  display: grid;
+}
+.policy-price-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.cinema-dashboard-p {
+  background: indianred;
+  border-radius: 2px;
 }
 @keyframes cinema {
   from {

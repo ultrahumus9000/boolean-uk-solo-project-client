@@ -34,6 +34,18 @@ const useStore = create((set, get) => ({
       });
   },
   modifyPolicy: () => {},
+  getValidateCurrToken: () => {
+    fetch(`${baseUrl}/token`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((userToken) => {
+        set({ currentUser: userToken });
+      })
+      .catch((error) => {
+        console.error("doesnt have token", error);
+      });
+  },
 }));
 
 export default useStore;

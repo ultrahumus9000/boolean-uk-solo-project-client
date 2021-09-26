@@ -16,6 +16,7 @@ export default function AdminPage() {
     <div className="admin-div">
       <AddNewEventForm />
       <section className="recomadation-card">
+        <p>Recommadation For today </p>
         <p>this film</p>
         <p>this film</p>
         <p>this film</p>

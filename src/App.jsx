@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import PageNotFound from "./pages/NotFounPage";
@@ -10,7 +11,16 @@ import AdminPage from "./pages/AdminPage";
 import GuestPage from "./pages/GuestPage";
 import FilmDetailPage from "./pages/FilmDetail";
 import Header from "./components/Header";
+import useStore from "./store";
+
 function App() {
+  const currentUser = useStore((store) => store.currentUser);
+  const getValidateCurrToken = useStore((store) => store.getValidateCurrToken);
+
+  useEffect(() => {
+    getValidateCurrToken();
+  }, []);
+
   return (
     <div className="App">
       <div className="main">

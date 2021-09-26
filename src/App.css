@@ -184,9 +184,34 @@ main {
   color: #ffffff;
   display: grid;
   width: 90vw;
-  grid-template-columns: auto auto auto;
+  grid-template:
+    "event recomand info" 1fr
+    "form form form" auto /
+    auto auto auto;
+
   border: 2px dashed mediumturquoise;
   padding: 10px;
+  justify-items: center;
+  gap: 10px;
+}
+.event {
+  grid-area: event;
+}
+.recomadation-card {
+  grid-area: recomand;
+}
+.cinema-infomation {
+  grid-area: info;
+}
+.add-event-section {
+  grid-area: form;
+  width: 90vw;
+}
+.movie-list {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-items: center;
 }
 .create-event-btn {
   color: black;
@@ -208,7 +233,6 @@ main {
 }
 
 input[type="checkbox"] + label {
-  background-color: mediumslateblue;
   padding: 3px;
   border-radius: 2px;
   border: 2px dashed #00ffff;
@@ -274,12 +298,35 @@ input[type="checkbox"]:checked + label {
     transform: rotate(360deg);
   }
 }
+@media only screen and (max-width: 1000px) {
+  .admin-div {
+    grid-template:
+      "event recomand " 1fr
+      "info  info" auto
+      "form  form" auto/
+      auto auto;
+  }
+}
 @media only screen and (max-width: 600px) {
+  .admin-div {
+    grid-template:
+      "event recomand" 1fr
+      "info form " auto /
+      auto auto;
+  }
   .film-card {
     grid-template-columns: auto;
   }
 }
 @media only screen and (max-width: 450px) {
+  .admin-div {
+    grid-template:
+      "event" auto
+      "recomand" auto
+      "info" auto
+      "form " auto /
+      auto;
+  }
   .span-show-time {
     display: none;
   }

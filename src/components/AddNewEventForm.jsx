@@ -2,8 +2,25 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useStore from "../store";
 
+// id           Int           @id @default(autoincrement())
+// movie        Movie         @relation(fields: [movieId], references: [id], onDelete: Cascade)
+// movieId      Int
+// screening    Int
+// showTime     DateTime      @db.Time
+// event        Event         @relation(fields: [eventId], references: [id])
+// eventId      Int
+// transactions Transaction[]
+// quantity     Int
+
+// id       Int      @id @default(autoincrement())
+// date     DateTime @unique @db.Date
+// agendas  Agenda[]
+// cinema   Cinema   @relation(fields: [cinemaId], references: [id])
+// cinemaId Int
+
 export default function AddNewEventForm() {
   const [createNewEvent, setCreateNewEvent] = useState(false);
+  const [repeatSchedule, setRepeatSchedule] = useState(false);
   const today = new Date().toISOString();
   const modifiedToday = today.slice(0, 10);
   const movies = useStore((store) => store.movies);
@@ -15,15 +32,20 @@ export default function AddNewEventForm() {
   const initialAgenda = {
     quantity: cinema.capacity,
     showTime: ["11:00", "14:00", "17:00", "20:00"],
+    screening: cinema.screening,
   };
 
-  function toggleDisplayNewEventForm() {
-    setCreateNewEvent(!createNewEvent);
-  }
   useEffect(() => {
     fetchAllMovies();
     getCinemaInfo();
   }, []);
+
+  function toggleDisplayNewEventForm() {
+    setCreateNewEvent(!createNewEvent);
+  }
+  function toggleRepeatSchedule() {
+    setRepeatSchedule(!repeatSchedule);
+  }
 
   function changeCheckBoxQuantity(e) {
     if (e.target.checked) {
@@ -42,15 +64,31 @@ export default function AddNewEventForm() {
     e.preventDefault();
   }
 
+  function handleRepeatSubmit(e) {
+    e.preventDefault();
+  }
+
   return (
     <section className="agenda-section">
-      <button className="create-event-btn" onClick={toggleDisplayNewEventForm}>
-        Create New Event
-      </button>
+      <div className="button-div">
+        <button
+          className="create-event-btn"
+          onClick={toggleDisplayNewEventForm}
+        >
+          Create New Event
+        </button>
+        <button className="create-event-btn" onClick={toggleRepeatSchedule}>
+          Repeat Schedule
+        </button>
+      </div>
 
       {createNewEvent && (
         <form className="agenda-form" onSubmit={handleSubmit}>
-          <input type="date" min={modifiedToday} />
+          <label htmlFor="">
+            Select Event Date:
+            <input type="date" min={modifiedToday} />
+          </label>
+
           <ul className="movie-list">
             {movies.map((movie) => {
               return (
@@ -69,6 +107,18 @@ export default function AddNewEventForm() {
               );
             })}
           </ul>
+        </form>
+      )}
+
+      {repeatSchedule && (
+        <form className="repeat-form" onSubmit={handleRepeatSubmit}>
+          <select name="" id="">
+            <option value="one">One Week</option>
+            <option value="two">Two Week</option>
+            <option value="whole">One Month</option>
+          </select>
+          <button>Confirm</button>
+          <button onClick={toggleRepeatSchedule}>Cancel</button>
         </form>
       )}
     </section>

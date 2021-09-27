@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import useStore from "../store";
+import Waiting from "./Waiting";
 
 // id           Int           @id @default(autoincrement())
 // movie        Movie         @relation(fields: [movieId], references: [id], onDelete: Cascade)
@@ -33,6 +34,9 @@ export default function AddNewEventForm() {
   const getCinemaInfo = useStore((store) => store.getCinemaInfo);
   const [checkBoxQuantity, setCheckBoxQuantity] = useState(0);
   const [eventForm, setEventForm] = useState(initialEventForm);
+  const waiting = useStore((store) => store.waiting);
+  const toggleWaiting = useStore((store) => store.toggleWaiting);
+  const toggleSucceed = useStore((store) => store.toggleSucceed);
   const lastestEvent = useStore((store) => store.lastestEvent);
   const fetchLastEvent = useStore((store) => store.fetchLastEvent);
 
@@ -63,7 +67,10 @@ export default function AddNewEventForm() {
         if (resp.includes("fail")) {
           alert("this event has been created, do you want to modify instead?");
         } else {
-          alert("you have created successfully");
+          toggleSucceed();
+          setTimeout(() => {
+            toggleWaiting();
+          }, 1000);
         }
       });
   }
@@ -77,6 +84,7 @@ export default function AddNewEventForm() {
   function handleInputChange(e) {
     setEventForm({ ...eventForm, date: e.target.value });
   }
+
   function changeCheckBoxQuantity(e) {
     if (e.target.checked) {
       if (checkBoxQuantity >= cinema.screening) {
@@ -113,16 +121,23 @@ export default function AddNewEventForm() {
 
     let modifiedFormData = { ...eventForm, ...initialAgenda };
 
+    toggleWaiting();
+
     postNewEvent(modifiedFormData).then(() => {
       setEventForm(initialEventForm);
       setCreateNewEvent(false);
-
       setCheckBoxQuantity(0);
     });
   }
 
   return (
     <section className="agenda-section">
+      {waiting && (
+        <div className="waiting-div">
+          <Waiting />
+        </div>
+      )}
+
       <div className="button-div">
         {createNewEvent ? (
           <button className="cancel-btn" onClick={toggleDisplayNewEventForm}>
@@ -171,8 +186,9 @@ export default function AddNewEventForm() {
               );
             })}
           </ul>
-
-          {/* <p>Repeat Event From {lastestEvent.date.slice(0, 10)}</p> */}
+          {lastestEvent.date && (
+            <p>Repeat Event From {lastestEvent.date.slice(0, 10)}</p>
+          )}
 
           <label htmlFor="" className="radio-label">
             <input

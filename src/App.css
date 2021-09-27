@@ -212,6 +212,10 @@ main {
 .add-event-section {
   grid-area: form;
 }
+.agenda-section {
+  padding: auto;
+}
+
 .agenda-form {
   padding: 10px;
   margin: 10px;

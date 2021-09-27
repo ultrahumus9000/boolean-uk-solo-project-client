@@ -58,6 +58,14 @@ const useStore = create((set, get) => ({
         set({ lastestEvent: resp });
       });
   },
+  waiting: false,
+  toggleWaiting: () => {
+    set({ waiting: !get().waiting });
+  },
+  succeed: false,
+  toggleSucceed: () => {
+    set({ succeed: !get().succeed });
+  },
 }));
 
 export default useStore;

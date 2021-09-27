@@ -1,25 +1,40 @@
 import useStore from "../store";
+import { useState, useEffect } from "react";
+import EditUserForm from "../components/EditUserForm";
 
 export default function GuestPage() {
   const currentUser = useStore((store) => store.currentUser);
-  console.log("currentUser", currentUser);
-  return (
-    <div className="guest-info">
-      <p>
-        username: <span>{currentUser.username}</span>
-      </p>
+  const [editStatus, setEditStatus] = useState(false);
 
-      <p>
-        Email: <span> {currentUser.email} </span>
-      </p>
-      <p>
-        First Name: <span> {currentUser.firstName} </span>
-      </p>
-      <p>
-        Last Name: <span> {currentUser.lastName} </span>
-      </p>
-      <button className="guest-btn">Edit Your Account</button>
-      <button className="password-btn">Edit Your Password</button>
+  function toggleEditInfo(params) {
+    setEditStatus(!editStatus);
+  }
+
+  return (
+    <div>
+      {editStatus ? (
+        <EditUserForm toggle={toggleEditInfo} />
+      ) : (
+        <div className="guest-info">
+          <p>
+            username: <span>{currentUser.username}</span>
+          </p>
+
+          <p>
+            Email: <span> {currentUser.email} </span>
+          </p>
+          <p>
+            First Name: <span> {currentUser.firstName} </span>
+          </p>
+          <p>
+            Last Name: <span> {currentUser.lastName} </span>
+          </p>
+          <button className="guest-btn" onClick={toggleEditInfo}>
+            Edit Your Account
+          </button>
+          <button className="password-btn">Edit Your Password</button>
+        </div>
+      )}
     </div>
   );
 }

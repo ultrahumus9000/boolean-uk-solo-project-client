@@ -27,8 +27,6 @@ const initialEventForm = {
 };
 export default function AddNewEventForm() {
   const [createNewEvent, setCreateNewEvent] = useState(false);
-  const [repeatSchedule, setRepeatSchedule] = useState(false);
-
   const movies = useStore((store) => store.movies);
   const fetchAllMovies = useStore((store) => store.fetchAllMovies);
   const cinema = useStore((store) => store.cinema);
@@ -72,12 +70,7 @@ export default function AddNewEventForm() {
 
   function toggleDisplayNewEventForm() {
     setCreateNewEvent(!createNewEvent);
-    setRepeatSchedule(false);
-    setEventForm(initialEventForm);
-  }
-  function toggleRepeatSchedule() {
-    setRepeatSchedule(!repeatSchedule);
-    setCreateNewEvent(false);
+    setCheckBoxQuantity(0);
     setEventForm(initialEventForm);
   }
 
@@ -119,13 +112,11 @@ export default function AddNewEventForm() {
     e.preventDefault();
 
     let modifiedFormData = { ...eventForm, ...initialAgenda };
-    const modifiedDate = new Date(modifiedFormData.date).toISOString();
-    modifiedFormData = { ...modifiedFormData, date: modifiedDate };
 
     postNewEvent(modifiedFormData).then(() => {
       setEventForm(initialEventForm);
       setCreateNewEvent(false);
-      setRepeatSchedule(false);
+
       setCheckBoxQuantity(0);
     });
   }
@@ -133,8 +124,8 @@ export default function AddNewEventForm() {
   return (
     <section className="agenda-section">
       <div className="button-div">
-        {repeatSchedule ? (
-          <button className="cancel-btn" onClick={toggleRepeatSchedule}>
+        {createNewEvent ? (
+          <button className="cancel-btn" onClick={toggleDisplayNewEventForm}>
             Cancel
           </button>
         ) : (
@@ -181,7 +172,7 @@ export default function AddNewEventForm() {
             })}
           </ul>
 
-          <p>Repeat Event From {lastestEvent.date.slice(0, 10)}</p>
+          {/* <p>Repeat Event From {lastestEvent.date.slice(0, 10)}</p> */}
 
           <label htmlFor="" className="radio-label">
             <input

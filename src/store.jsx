@@ -48,14 +48,17 @@ const useStore = create((set, get) => ({
         console.error("doesnt have token", error);
       });
   },
-  lastestEvent: {},
+  lastestEvent: "",
   fetchLastEvent: () => {
     fetch(`${baseUrl}/events/lastest`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        set({ lastestEvent: resp });
+        const orginaldate = new Date(resp.date);
+        const modifiedDate = orginaldate.setDate(orginaldate.getDate() + 1);
+        const newDate = new Date(modifiedDate).toISOString();
+        set({ lastestEvent: newDate });
       });
   },
   waiting: false,
@@ -65,6 +68,10 @@ const useStore = create((set, get) => ({
   succeed: false,
   toggleSucceed: () => {
     set({ succeed: !get().succeed });
+  },
+  fail: false,
+  toggleFail: () => {
+    set({ fail: !get().fail });
   },
 }));
 

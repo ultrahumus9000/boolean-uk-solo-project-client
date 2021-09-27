@@ -35,12 +35,12 @@ export default function AddNewEventForm() {
   const [checkBoxQuantity, setCheckBoxQuantity] = useState(0);
   const [eventForm, setEventForm] = useState(initialEventForm);
   const waiting = useStore((store) => store.waiting);
+  const toggleFail = useStore((store) => store.toggleFail);
   const toggleWaiting = useStore((store) => store.toggleWaiting);
   const toggleSucceed = useStore((store) => store.toggleSucceed);
   const lastestEvent = useStore((store) => store.lastestEvent);
   const fetchLastEvent = useStore((store) => store.fetchLastEvent);
 
-  console.log("eventForm", eventForm);
   const initialAgenda = {
     quantity: cinema.capacity,
     showTime: ["11:00", "14:00", "17:00", "20:00"],
@@ -65,7 +65,10 @@ export default function AddNewEventForm() {
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp.includes("fail")) {
-          alert("this event has been created, do you want to modify instead?");
+          toggleFail();
+          setTimeout(() => {
+            toggleWaiting();
+          }, 1000);
         } else {
           toggleSucceed();
           setTimeout(() => {
@@ -159,7 +162,7 @@ export default function AddNewEventForm() {
             Select Event Date:
             <input
               type="date"
-              // min={modifiedToday}
+              min={lastestEvent ? lastestEvent.slice(0, 10) : modifiedToday}
               className="date-input"
               name="date"
               value={eventForm.date}
@@ -186,9 +189,7 @@ export default function AddNewEventForm() {
               );
             })}
           </ul>
-          {lastestEvent.date && (
-            <p>Repeat Event From {lastestEvent.date.slice(0, 10)}</p>
-          )}
+          {lastestEvent && <p>Repeat Event From {lastestEvent.slice(0, 10)}</p>}
 
           <label htmlFor="" className="radio-label">
             <input

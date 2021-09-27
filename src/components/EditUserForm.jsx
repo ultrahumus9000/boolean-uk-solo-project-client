@@ -9,7 +9,7 @@ export default function EditUserForm({ toggle }) {
   console.log("currentUser", currentUser);
 
   function updateUser(data) {
-    return fetch(`http://localhost:4000/users`, {
+    return fetch(`http://localhost:4000/user`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -1,13 +1,21 @@
 import useStore from "../store";
 import { useState, useEffect } from "react";
 import EditUserForm from "../components/EditUserForm";
+import Loading from "../components/Loading";
 
 export default function GuestPage() {
   const currentUser = useStore((store) => store.currentUser);
   const [editStatus, setEditStatus] = useState(false);
+  console.log("currentUser", currentUser);
 
-  function toggleEditInfo(params) {
+  // useEffect(() => {}, [currentUser.role]);
+
+  function toggleEditInfo() {
     setEditStatus(!editStatus);
+  }
+
+  if (!currentUser.role) {
+    return <Loading />;
   }
 
   return (
@@ -17,7 +25,7 @@ export default function GuestPage() {
       ) : (
         <div className="guest-info">
           <p>
-            username: <span>{currentUser.username}</span>
+            Username: <span>{currentUser.username}</span>
           </p>
 
           <p>

@@ -163,6 +163,8 @@ main {
 
 .time-selection {
   padding: 5px;
+  display: grid;
+  grid-template-columns: auto auto;
 }
 .show-time {
   background-color: tomato;
@@ -177,6 +179,9 @@ main {
   font-weight: bolder;
 }
 .buy-btn:hover {
+  filter: brightness(1.1);
+}
+.buy-btn:active {
   filter: brightness(1.1);
 }
 /* admin page */
@@ -330,6 +335,58 @@ input[type="checkbox"]:checked + label {
   background: indianred;
   border-radius: 2px;
 }
+.simple-film-card {
+  border: 2px dashed mediumturquoise;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  text-align: left;
+  align-items: center;
+  margin: 5px;
+}
+.simple-film-card img {
+  width: 100px;
+}
+.simple-movie-title {
+  max-width: 20ch;
+}
+
+.guest-info {
+  display: grid;
+  grid-gap: 5px;
+  padding: 10px;
+  border: 2px solid mediumturquoise;
+}
+
+.guest-info p {
+  border: 2px dashed mediumturquoise;
+  padding: 3px;
+  background-color: #48d1cc30;
+}
+.guest-info p span {
+  color: tomato;
+}
+.guest-btn {
+  background-color: transparent;
+  border: 2px solid lavender;
+  padding: 10px;
+  color: lavender;
+}
+
+.guest-btn:hover {
+  background-color: #ffffff30;
+}
+
+.password-btn {
+  background-color: transparent;
+  border: 2px solid tomato;
+  padding: 10px;
+  color: lavender;
+}
+.password-btn:hover {
+  background-color: #ff634720;
+}
+
 @keyframes cinema {
   from {
     transform: rotate(0deg);

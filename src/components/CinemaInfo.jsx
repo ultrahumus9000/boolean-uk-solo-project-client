@@ -13,7 +13,6 @@ export default function CinemaInfo() {
   useEffect(() => {
     getPolicy();
   }, []);
-  console.log(" policy ", policy);
 
   if (cinema.staff === undefined || policy.adultPrice === undefined) {
     return <Loading />;

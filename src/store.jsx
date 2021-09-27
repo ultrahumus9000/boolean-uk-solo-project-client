@@ -17,6 +17,14 @@ const useStore = create((set, get) => ({
         set({ movies: moviesFromServer });
       });
   },
+  todayMovies: [],
+  fetchTodayMovies(today) {
+    fetch(`${baseUrl}/public`)
+      .then((resp) => resp.json())
+      .then((moviesFromServer) => {
+        set({ todayMovies: moviesFromServer });
+      });
+  },
   cinema: {},
   getCinemaInfo: () => {
     fetch(`${baseUrl}/cinema`, {
@@ -55,6 +63,7 @@ const useStore = create((set, get) => ({
     })
       .then((resp) => resp.json())
       .then((resp) => {
+        if (!resp) return;
         const orginaldate = new Date(resp.date);
         const modifiedDate = orginaldate.setDate(orginaldate.getDate() + 1);
         const newDate = new Date(modifiedDate).toISOString();

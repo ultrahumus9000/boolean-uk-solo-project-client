@@ -18,20 +18,37 @@ export default function Header() {
     });
   }
 
+  function handleLoginOptions() {
+    if (!currentUser.role) {
+      history.push("/login");
+    } else if (currentUser.role === "Guest") {
+      history.push("/guest");
+    } else {
+      history.push("/admin");
+    }
+  }
   return (
     <header className={currentUser.role ? "header-with-user" : null}>
-      <img className="header-img" src={movie} />
+      <img
+        className="header-img"
+        alt=""
+        src={movie}
+        onClick={() => {
+          history.push("/");
+        }}
+      />
       <h1>
         Nos Cinema <span>Sheffield</span>
       </h1>
-      <Link to="/login">
-        <button className="user-icon">
-          <img
-            className="header-img"
-            src={currentUser.role === "Admin" ? admin : user}
-          />
-        </button>
-      </Link>
+
+      <button className="user-icon" onClick={handleLoginOptions}>
+        <img
+          className="header-img"
+          alt=""
+          src={currentUser.role === "Admin" ? admin : user}
+        />
+      </button>
+
       {currentUser.role && (
         <button className="log-out" onClick={handleLogOut}>
           Log Out

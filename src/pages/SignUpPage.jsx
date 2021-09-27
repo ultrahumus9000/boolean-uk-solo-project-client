@@ -24,7 +24,6 @@ export default function SignUpPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newUser),
-      // credentials: "include",
     }).then(() => {
       targetEvent.reset();
       history.push("/");

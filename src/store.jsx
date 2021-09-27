@@ -9,7 +9,9 @@ const useStore = create((set, get) => ({
   },
   movies: [],
   fetchAllMovies: () => {
-    fetch(`${baseUrl}/movies`)
+    fetch(`${baseUrl}/movies`, {
+      credentials: "include",
+    })
       .then((resp) => resp.json())
       .then((moviesFromServer) => {
         set({ movies: moviesFromServer });
@@ -44,6 +46,16 @@ const useStore = create((set, get) => ({
       })
       .catch((error) => {
         console.error("doesnt have token", error);
+      });
+  },
+  lastestEvent: {},
+  fetchLastEvent: () => {
+    fetch(`${baseUrl}/events/lastest`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        set({ lastestEvent: resp });
       });
   },
 }));

@@ -82,6 +82,43 @@ const useStore = create((set, get) => ({
   toggleFail: () => {
     set({ fail: !get().fail });
   },
+
+  updateUser: (data) => {
+    return fetch(`http://localhost:4000/user`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify(data),
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((updatedUser) => {
+        set({ currentUser: updatedUser });
+      });
+  },
+
+  updateGuestPassword: ({ originPassword, newPassword }) => {
+    return fetch(`http://localhost:4000/user/password`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify({ originPassword, newPassword }),
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((updateResult) => {
+        if (updateResult.includes("fail")) {
+          alert("orginal password doesnt match");
+        } else {
+          alert("you changed password successfully");
+        }
+        return true;
+      });
+  },
 }));
 
 export default useStore;

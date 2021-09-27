@@ -6,28 +6,13 @@ export default function EditUserForm({ toggle }) {
   const currentUser = useStore((store) => store.currentUser);
   const setCurrentUser = useStore((store) => store.setCurrentUser);
   const [form, setForm] = useState(currentUser);
-  console.log("currentUser", currentUser);
-
-  function updateUser(data) {
-    return fetch(`http://localhost:4000/user`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        credentials: "include",
-      },
-      body: JSON.stringify(data),
-      credentials: "include",
-    })
-      .then((resp) => resp.json())
-      .then((updatedUser) => {
-        setCurrentUser(updatedUser);
-        toggle();
-      });
-  }
+  const updateUser = useStore((store) => store.updateUser);
 
   function handleSubmit(e) {
     e.preventDefault();
-    updateUser(form);
+    updateUser(form).then(() => {
+      toggle();
+    });
   }
 
   function cancel() {

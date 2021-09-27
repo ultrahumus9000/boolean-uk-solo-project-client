@@ -392,8 +392,14 @@ input[type="checkbox"]:checked + label {
   grid-template-columns: 90px 200px;
   text-align: left;
 }
+
 .guest-form input {
   padding-left: 5px;
+}
+
+.password-form label {
+  grid-template-columns: 250px;
+  height: 60px;
 }
 
 @keyframes cinema {

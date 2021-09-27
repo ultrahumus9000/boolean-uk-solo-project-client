@@ -2,16 +2,23 @@ import useStore from "../store";
 import { useState, useEffect } from "react";
 import EditUserForm from "../components/EditUserForm";
 import Loading from "../components/Loading";
+import EditGuestPassword from "../components/EditGuestPassword";
 
 export default function GuestPage() {
   const currentUser = useStore((store) => store.currentUser);
   const [editStatus, setEditStatus] = useState(false);
+  const [editPassword, setEditPassword] = useState(false);
   console.log("currentUser", currentUser);
 
   // useEffect(() => {}, [currentUser.role]);
 
   function toggleEditInfo() {
     setEditStatus(!editStatus);
+  }
+
+  function toggleEditPassword() {
+    setEditStatus(!editStatus);
+    setEditPassword(!editPassword);
   }
 
   if (!currentUser.role) {
@@ -21,7 +28,11 @@ export default function GuestPage() {
   return (
     <div>
       {editStatus ? (
-        <EditUserForm toggle={toggleEditInfo} />
+        editPassword ? (
+          <EditGuestPassword toggle={toggleEditPassword} />
+        ) : (
+          <EditUserForm toggle={toggleEditInfo} />
+        )
       ) : (
         <div className="guest-info">
           <p>
@@ -40,7 +51,9 @@ export default function GuestPage() {
           <button className="guest-btn" onClick={toggleEditInfo}>
             Edit Your Account
           </button>
-          <button className="password-btn">Edit Your Password</button>
+          <button className="password-btn" onClick={toggleEditPassword}>
+            Edit Your Password
+          </button>
         </div>
       )}
     </div>

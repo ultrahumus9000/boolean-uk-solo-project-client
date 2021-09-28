@@ -435,7 +435,8 @@ input[type="checkbox"]:checked + label {
   .admin-div {
     grid-template:
       "event recomand" 1fr
-      "info form " auto /
+      "info info" auto
+      "form form" auto /
       auto auto;
   }
   .button-div {

@@ -12,12 +12,13 @@ const useStore = create((set, get) => ({
   },
   movies: [],
   fetchAllMovies: () => {
-    fetch(`${baseUrl}/movies`, {
+    return fetch(`${baseUrl}/movies`, {
       credentials: "include",
     })
       .then((resp) => resp.json())
       .then((moviesFromServer) => {
         set({ movies: moviesFromServer });
+        return moviesFromServer;
       });
   },
   todayMovies: [],
@@ -126,7 +127,7 @@ const useStore = create((set, get) => ({
         return true;
       });
   },
-
+  tempMovies: [],
   newMovies: [],
   fetchRecommendMovies: () => {
     fetch(
@@ -134,38 +135,42 @@ const useStore = create((set, get) => ({
     )
       .then((resp) => resp.json())
       .then((newFilms) => {
-        const modifiedMovies = newFilms.results.map((movie) => {
-          const newMovie = {
-            releaseDate: movie.release_date,
-            genre: generalGere[Math.floor(Math.random() * generalGere.length)],
-            title: movie.title,
-            overview: movie.overview,
-            poster: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
-            duration: showTime[Math.floor(Math.random() * showTime.length)],
-          };
-          return newMovie;
+        const fetchAllMovies = get().fetchAllMovies;
+        fetchAllMovies().then((databaseMovies) => {
+          const modifiedMovies = newFilms.results.map((movie) => {
+            const newMovie = {
+              releaseDate: movie.release_date,
+              genre:
+                generalGere[Math.floor(Math.random() * generalGere.length)],
+              title: movie.title,
+              overview: movie.overview,
+              poster: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
+              duration: showTime[Math.floor(Math.random() * showTime.length)],
+            };
+            return newMovie;
+          });
+
+          const databaseMovieTitles = databaseMovies.map(
+            (movie) => movie.title
+          );
+          const newMoviesTitles = modifiedMovies.map((movie) => movie.title);
+
+          let difference = newMoviesTitles.filter(
+            (title) => !databaseMovieTitles.includes(title)
+          );
+
+          if (difference.length >= 3) {
+            difference = difference.slice(0, 3);
+          }
+
+          const newMovies = modifiedMovies.filter((movie) =>
+            difference.includes(movie.title)
+          );
+
+          console.log("newMovie", newMovies);
+
+          set({ newMovies });
         });
-
-        const databaseMovies = get().movies;
-
-        const databaseMovieTitles = databaseMovies.map((movie) => movie.title);
-        const newMoviesTitles = modifiedMovies.map((movie) => movie.title);
-
-        let difference = newMoviesTitles.filter(
-          (title) => !databaseMovieTitles.includes(title)
-        );
-
-        if (difference.length >= 3) {
-          difference = difference.slice(0, 3);
-        }
-
-        const newMovies = modifiedMovies.filter((movie) =>
-          difference.includes(movie.title)
-        );
-
-        console.log("newMovie", newMovies);
-
-        set({ newMovies });
       });
   },
   addToDatabase: (data) => {

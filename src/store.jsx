@@ -2,6 +2,9 @@ import create from "zustand";
 
 let baseUrl = "http://localhost:4000";
 
+const generalGere = ["Adventure", "Fantasy", "Romance", "Comedy", "Tradgedy"];
+const showTime = ["90 mins", "100 mins", "120 mins"];
+
 const useStore = create((set, get) => ({
   currentUser: {},
   setCurrentUser: (user) => {
@@ -121,6 +124,48 @@ const useStore = create((set, get) => ({
         }
 
         return true;
+      });
+  },
+
+  newMovies: [],
+  fetchRecommendMovies: () => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=d214ecb9bda367118385bcbdb9cd776f&language=en-US&page=2`
+    )
+      .then((resp) => resp.json())
+      .then((newFilms) => {
+        const modifiedMovies = newFilms.results.map((movie) => {
+          const newMovie = {
+            releaseDate: movie.release_date,
+            genre: generalGere[Math.floor(Math.random() * generalGere.length)],
+            title: movie.title,
+            overview: movie.overview,
+            poster: `https://image.tmdb.org/t/p/w342${movie.backdrop_path}`,
+            duration: showTime[Math.floor(Math.random() * showTime.length)],
+          };
+          return newMovie;
+        });
+
+        const databaseMovies = get().movies;
+
+        const databaseMovieTitles = databaseMovies.map((movie) => movie.title);
+        const newMoviesTitles = modifiedMovies.map((movie) => movie.title);
+
+        let difference = newMoviesTitles.filter(
+          (title) => !databaseMovieTitles.includes(title)
+        );
+
+        if (difference.length >= 3) {
+          difference = difference.slice(0, 3);
+        }
+
+        const newMovies = modifiedMovies.filter((movie) =>
+          difference.includes(movie.title)
+        );
+
+        console.log("newMovie", newMovies);
+
+        set({ newMovies });
       });
   },
 }));

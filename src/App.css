@@ -138,6 +138,9 @@ main {
   gap: 10px;
   padding: 5px;
 }
+.recommend-card {
+  grid-template-columns: 1fr;
+}
 .movie-features {
   background: linear-gradient(30deg, mediumslateblue, mediumspringgreen);
   padding: 3px 10px;

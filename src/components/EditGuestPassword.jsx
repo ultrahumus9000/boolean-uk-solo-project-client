@@ -10,7 +10,6 @@ export default function EditGuestPassword({ toggle }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     const originPassword = e.target.old.value;
     const newPassword = e.target.new.value;
     updateGuestPassword({ originPassword, newPassword }).then(() => {

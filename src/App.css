@@ -199,13 +199,16 @@ main {
   width: 90vw;
   grid-template:
     "event recomand info" 1fr
-    "form form form" auto /
+    "outdate form form" auto /
     auto auto auto;
 
   border: 2px dashed mediumturquoise;
   padding: 10px;
   justify-items: center;
   gap: 10px;
+}
+.outdated-card {
+  grid-area: outdate;
 }
 .button-div {
   display: grid;
@@ -372,7 +375,7 @@ input[type="checkbox"]:checked + label {
   display: grid;
   grid-gap: 5px;
   padding: 20px;
-  border: 2px solid mediumturquoise;
+  border: 2px solid #48d1cc;
 }
 
 .surface {
@@ -469,6 +472,7 @@ input[type="checkbox"]:checked + label {
     grid-template:
       "event recomand " 1fr
       "info  info" auto
+      "outdate  outdate" auto
       "form  form" auto/
       auto auto;
   }
@@ -481,6 +485,7 @@ input[type="checkbox"]:checked + label {
     grid-template:
       "event recomand" 1fr
       "info info" auto
+      "outdate  outdate" auto
       "form form" auto /
       auto auto;
   }
@@ -496,6 +501,7 @@ input[type="checkbox"]:checked + label {
     grid-template:
       "event" auto
       "recomand" auto
+      "outdate" auto
       "info" auto
       "form " auto /
       auto;

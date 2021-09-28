@@ -194,6 +194,36 @@ const useStore = create((set, get) => ({
         fetchRecommendMovies();
       });
   },
+  outdatedMovies: [],
+  fetchOutDatedMovies: () => {
+    fetch(`${baseUrl}/movies`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((movies) => {
+        if (movies.length > 20) {
+          const outDatedFilmsNumber = movies.length - 20;
+
+          const outdatedMovies = movies.slice(0, outDatedFilmsNumber);
+
+          set({ outdatedMovies });
+        }
+      });
+  },
+  deleteToDatabase: (id) => {
+    fetch(`${baseUrl}/movies/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    })
+      .then(() => {
+        const fetchAllMovies = get().fetchAllMovies;
+        fetchAllMovies();
+      })
+      .then(() => {
+        const fetchOutDatedMovies = get().fetchOutDatedMovies;
+        fetchOutDatedMovies();
+      });
+  },
 }));
 
 export default useStore;

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import AddNewEventForm from "../components/AddNewEventForm";
 import CinemaInfo from "../components/CinemaInfo";
+import DeleteBoard from "../components/DeleteBoard";
 import Loading from "../components/Loading";
 import RecommedationCard from "../components/RecommendationCard";
 import SimpleFilmCard from "../components/SimpleFilmCard";
@@ -31,6 +32,10 @@ export default function AdminPage() {
       <section className="recomadation-card">
         <p className="board-p">Recommadation For today </p>
         <RecommedationCard />
+      </section>
+      <section className="outdated-card">
+        <p className="board-p">Outdated Films </p>
+        <DeleteBoard />
       </section>
       <section className="add-event-section">
         <AddNewEventForm />

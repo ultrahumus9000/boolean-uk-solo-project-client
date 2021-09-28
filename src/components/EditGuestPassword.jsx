@@ -12,6 +12,10 @@ export default function EditGuestPassword({ toggle }) {
     e.preventDefault();
     const originPassword = e.target.old.value;
     const newPassword = e.target.new.value;
+    console.log(originPassword, newPassword);
+    if (originPassword === newPassword) {
+      alert("YOU CAN NOT CHOOSE SAME PASSWORD AGAIN");
+    }
     updateGuestPassword({ originPassword, newPassword }).then(() => {
       toggle();
     });
@@ -25,11 +29,11 @@ export default function EditGuestPassword({ toggle }) {
       >
         <label htmlFor="">
           <span>Orginal Password</span>
-          <input type="text" name="old" />
+          <input type="password" name="old" />
         </label>
         <label htmlFor="">
           <span>New Password</span>
-          <input type="text" name="new" />
+          <input type="password" name="new" />
         </label>
         <button type="submit" className="guest-btn">
           Confirm

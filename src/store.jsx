@@ -111,11 +111,15 @@ const useStore = create((set, get) => ({
     })
       .then((resp) => resp.json())
       .then((updateResult) => {
-        if (updateResult.includes("fail")) {
-          alert("orginal password doesnt match");
-        } else {
+        if (
+          typeof updateResult === "string" &&
+          updateResult.includes("successfully")
+        ) {
           alert("you changed password successfully");
+        } else {
+          alert("orginal password doesnt match");
         }
+
         return true;
       });
   },

@@ -87,7 +87,7 @@ const useStore = create((set, get) => ({
   },
 
   updateUser: (data) => {
-    return fetch(`http://localhost:4000/user`, {
+    return fetch(`${baseUrl}/user`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const useStore = create((set, get) => ({
   },
 
   updateGuestPassword: ({ originPassword, newPassword }) => {
-    return fetch(`http://localhost:4000/user/password`, {
+    return fetch(`${baseUrl}/user/password`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -166,6 +166,27 @@ const useStore = create((set, get) => ({
         console.log("newMovie", newMovies);
 
         set({ newMovies });
+      });
+  },
+  addToDatabase: (data) => {
+    fetch(`${baseUrl}/movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify(data),
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then(() => {
+        const fetchAllMovies = get().fetchAllMovies;
+        fetchAllMovies();
+      })
+      .then(() => {
+        alert("you added film into database successfully");
+        const fetchRecommendMovies = get().fetchRecommendMovies;
+        fetchRecommendMovies();
       });
   },
 }));

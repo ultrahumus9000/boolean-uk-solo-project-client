@@ -10,7 +10,7 @@ export default function SimpleFilmCard({ movie }) {
     <div>
       {view ? (
         <div className="film-card" onClick={toggleView}>
-          <img src={movie.poster} alt="" />
+          <img className="big-film-img" src={movie.poster} alt="" />
           <div className="movie-info">
             <p className={`${movie.genre} movie-features `}>{movie.genre}</p>
             <p className="movie-date">Release Date {movie.releaseDate}</p>
@@ -33,7 +33,7 @@ export default function SimpleFilmCard({ movie }) {
         </div>
       ) : (
         <div className="simple-film-card" onClick={toggleView}>
-          <img src={movie.poster} alt="" />
+          <img className="film-img" src={movie.poster} alt="" />
           <p className="simple-movie-title">{movie.title}</p>
         </div>
       )}

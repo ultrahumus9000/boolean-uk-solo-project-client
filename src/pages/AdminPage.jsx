@@ -9,7 +9,7 @@ import useStore from "../store";
 export default function AdminPage() {
   const todayMovies = useStore((store) => store.todayMovies);
   const fetchTodayMovies = useStore((store) => store.fetchTodayMovies);
-  console.log("todayMovies 8", todayMovies);
+
   useEffect(() => {
     fetchTodayMovies();
   }, []);

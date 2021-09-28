@@ -1,11 +1,23 @@
 import useStore from "../store";
+import eyeclose from "../asset/eyeclose.svg";
+import eyeopen from "../asset/eyeopen.svg";
 
 import { useState } from "react";
 
 export default function EditGuestPassword({ toggle }) {
   const updateGuestPassword = useStore((store) => store.updateGuestPassword);
+  const [seePassword, setSeePassword] = useState(false);
+  const [seePasswordTwo, setSeePasswordTwo] = useState(false);
   function cancel() {
     toggle();
+  }
+
+  function togglePassword() {
+    setSeePassword(!seePassword);
+  }
+
+  function togglePasswordTwo() {
+    setSeePasswordTwo(!seePasswordTwo);
   }
 
   function handleSubmit(e) {
@@ -27,14 +39,49 @@ export default function EditGuestPassword({ toggle }) {
         className="guest-info guest-form password-form"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="">
+        <label htmlFor="" className="label-password">
           <span>Orginal Password</span>
-          <input type="password" name="old" />
+          <input type={`${seePassword ? "text" : "password"}`} name="old" />
+          {seePassword ? (
+            <button
+              className="button-eye label-eye"
+              type="button"
+              onClick={togglePassword}
+            >
+              <img className="eye" src={eyeopen} />
+            </button>
+          ) : (
+            <button
+              className="button-eye label-eye"
+              type="button"
+              onClick={togglePassword}
+            >
+              <img className="eye" src={eyeclose} />
+            </button>
+          )}
         </label>
-        <label htmlFor="">
+        <label htmlFor="" className="label-password">
           <span>New Password</span>
-          <input type="password" name="new" />
+          <input type={`${seePasswordTwo ? "text" : "password"}`} name="new" />
+          {seePasswordTwo ? (
+            <button
+              className="button-eye label-eye"
+              type="button"
+              onClick={togglePasswordTwo}
+            >
+              <img className="eye" src={eyeopen} />
+            </button>
+          ) : (
+            <button
+              className="button-eye label-eye"
+              type="button"
+              onClick={togglePasswordTwo}
+            >
+              <img className="eye" src={eyeclose} />
+            </button>
+          )}
         </label>
+
         <button type="submit" className="guest-btn">
           Confirm
         </button>

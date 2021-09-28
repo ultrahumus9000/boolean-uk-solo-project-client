@@ -401,7 +401,12 @@ input[type="checkbox"]:checked + label {
   grid-template-columns: 250px;
   height: 60px;
 }
-
+.label-password {
+  position: relative;
+}
+.label-eye {
+  top: 35px;
+}
 @keyframes cinema {
   from {
     transform: rotate(0deg);

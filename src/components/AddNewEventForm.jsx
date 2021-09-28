@@ -40,7 +40,9 @@ export default function AddNewEventForm() {
   const toggleSucceed = useStore((store) => store.toggleSucceed);
   const lastestEvent = useStore((store) => store.lastestEvent);
   const fetchLastEvent = useStore((store) => store.fetchLastEvent);
+  let modifiedLastDate = lastestEvent.slice(0, 10);
 
+  console.log("eventForm", eventForm);
   const initialAgenda = {
     quantity: cinema.capacity,
     showTime: ["11:00", "14:00", "17:00", "20:00"],
@@ -64,13 +66,14 @@ export default function AddNewEventForm() {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        if (resp.includes("fail")) {
-          toggleFail();
+        if (typeof resp === "string" && resp.includes("succeed")) {
+          toggleSucceed();
+          fetchLastEvent();
           setTimeout(() => {
             toggleWaiting();
           }, 1000);
         } else {
-          toggleSucceed();
+          toggleFail();
           setTimeout(() => {
             toggleWaiting();
           }, 1000);
@@ -85,6 +88,11 @@ export default function AddNewEventForm() {
   }
 
   function handleInputChange(e) {
+    if (eventForm.movies.length < 5) {
+      alert("you need to arrange 5 films on that day");
+      return;
+    }
+
     setEventForm({ ...eventForm, date: e.target.value });
   }
 
@@ -162,7 +170,7 @@ export default function AddNewEventForm() {
             Select Event Date:
             <input
               type="date"
-              min={lastestEvent ? lastestEvent.slice(0, 10) : modifiedToday}
+              min={lastestEvent ? modifiedLastDate : modifiedToday}
               className="date-input"
               name="date"
               value={eventForm.date}
@@ -189,7 +197,7 @@ export default function AddNewEventForm() {
               );
             })}
           </ul>
-          {lastestEvent && <p>Repeat Event From {lastestEvent.slice(0, 10)}</p>}
+          {lastestEvent && <p>Repeat Event From {modifiedLastDate}</p>}
 
           <label htmlFor="" className="radio-label">
             <input

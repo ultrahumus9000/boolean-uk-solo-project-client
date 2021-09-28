@@ -201,7 +201,7 @@ main {
 }
 .button-div {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   justify-content: center;
   gap: 20px;
 }
@@ -218,7 +218,11 @@ main {
   grid-area: form;
 }
 .agenda-section {
-  padding: auto;
+  padding: 10px;
+  border: 2px dashed mediumturquoise;
+  display: grid;
+  justify-items: center;
+  place-items: center;
 }
 
 .agenda-form {

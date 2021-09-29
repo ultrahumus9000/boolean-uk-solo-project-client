@@ -18,7 +18,6 @@ export default function PurchasePage() {
 
   let totalQuantity = adult + children;
 
-  console.log("total", typeof total);
   if (!shoppingCartMovies.movie) {
     return <Loading />;
   }

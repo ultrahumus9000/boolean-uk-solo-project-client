@@ -18,12 +18,35 @@ export default function PurchasePage() {
 
   let totalQuantity = adult + children;
 
+  const date = new Date().toISOString().slice(11, 13);
+
+  const filteredMovieAgendas = movie.agendas.filter(
+    (agenda) => agenda.showTime.slice(11, 13) >= date
+  );
+
   if (!shoppingCartMovies.movie) {
     return <Loading />;
   }
 
+  if (filteredMovieAgendas.length === 0) {
+    alert("not show today");
+    return <Loading />;
+    history.push("/");
+  }
+
   function handleSubmit() {
-    addTransactions(movie).then(() => {
+    const selectedAgenda = filteredMovieAgendas.find((agenda) =>
+      agenda.showTime.includes(showtime)
+    );
+    const newTransactionInfo = {
+      policyId: policy.id,
+      movieId: movie.id,
+      quantity: totalQuantity,
+      total,
+      agendaId: selectedAgenda.id,
+    };
+
+    addTransactions(newTransactionInfo).then(() => {
       history.push("/");
     });
   }
@@ -144,7 +167,7 @@ export default function PurchasePage() {
             </span>
 
             <ul className="time-section">
-              {movie.agendas.map((agenda, index) => (
+              {filteredMovieAgendas.map((agenda, index) => (
                 <li key={index} className="time-list">
                   <label
                     className={`time-list-label ${

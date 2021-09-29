@@ -14,7 +14,6 @@ export default function FilmCard({ movie }) {
     getPolicy();
   }, []);
 
-  console.log("policy", policy);
   // guest     User     @relation(fields: [guestId], references: [id], onDelete: Cascade)
   // guestId   Int
   // orderTime DateTime @default(now())

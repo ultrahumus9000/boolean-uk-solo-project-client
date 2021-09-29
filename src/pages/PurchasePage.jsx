@@ -1,22 +1,130 @@
 import Loading from "../components/Loading";
 import useStore from "../store";
 import { useState } from "react";
+import { useHistory } from "react-router";
 import addmore from "../asset/addmore.svg";
 import minus from "../asset/minus.svg";
 
 export default function PurchasePage() {
   const shoppingCartMovies = useStore((store) => store.shoppingCartMovies);
   const [showtime, setShowtime] = useState("");
-  const { movie, adult, children, total, policy } = shoppingCartMovies;
+  let { movie, adult, children, total, policy } = shoppingCartMovies;
 
-  console.log("line 8", movie, adult, children, total, policy);
+  const setShoppingCartMovies = useStore(
+    (store) => store.setShoppingCartMovies
+  );
+  const history = useHistory();
+  const addTransactions = useStore((store) => store.addTransactions);
+
+  let totalQuantity = adult + children;
+
+  console.log("total", typeof total);
   if (!shoppingCartMovies.movie) {
     return <Loading />;
+  }
+
+  function handleSubmit() {
+    addTransactions(movie).then(() => {
+      history.push("/");
+    });
   }
 
   function handleChange(e) {
     const tagetValue = e.target.value;
     setShowtime(tagetValue);
+  }
+
+  function minusChilrenTicket() {
+    if (children > 0) {
+      if (totalQuantity <= 4) {
+        const oldTotal =
+          adult * policy.adultPrice + children * policy.childPrice;
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          children: children - 1,
+          total: oldTotal - policy.childPrice,
+        });
+      } else {
+        const oldTotal =
+          (children - 1) * policy.childPrice + adult * policy.adultPrice;
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          children: children - 1,
+          total: oldTotal * 0.9,
+        });
+      }
+    } else {
+      return;
+    }
+  }
+  //add 4 more tickets and minus 4
+  function addChilrenTicket() {
+    if (children < 8) {
+      if (totalQuantity >= 3) {
+        const oldTotal =
+          (children + 1) * policy.childPrice + adult * policy.adultPrice;
+
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          children: children + 1,
+          total: oldTotal * 0.9,
+        });
+      } else {
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          children: children + 1,
+          total: total + policy.childPrice,
+        });
+      }
+    } else {
+      return;
+    }
+  }
+
+  function addAdultTicket() {
+    if (adult < 5) {
+      if (totalQuantity >= 3) {
+        const oldTotal =
+          (adult + 1) * policy.adultPrice + children * policy.childPrice;
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          adult: adult + 1,
+          total: oldTotal * 0.9,
+        });
+      } else {
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          adult: adult + 1,
+          total: total + policy.adultPrice,
+        });
+      }
+    } else {
+      return;
+    }
+  }
+
+  function minusAdultTicket() {
+    if (adult > 0) {
+      if (totalQuantity <= 4) {
+        const oldTotal =
+          adult * policy.adultPrice + children * policy.childPrice;
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          adult: adult - 1,
+          total: oldTotal - policy.adultPrice,
+        });
+      } else {
+        const oldTotal =
+          children * policy.childPrice + (adult - 1) * policy.adultPrice;
+        setShoppingCartMovies({
+          ...shoppingCartMovies,
+          adult: adult - 1,
+          total: oldTotal * 0.9,
+        });
+      }
+    } else {
+      return;
+    }
   }
 
   return (
@@ -70,11 +178,21 @@ export default function PurchasePage() {
           <td className="price-tag">Adult £{policy.adultPrice} </td>
           <span className="add-minus-span">
             <button className="add-minus-btn">
-              <img className="minus-img" src={minus} alt="" />
+              <img
+                className="minus-img"
+                src={minus}
+                alt=""
+                onClick={minusAdultTicket}
+              />
             </button>
             {adult}
             <button className="add-minus-btn">
-              <img src={addmore} className="add-img" alt="" />
+              <img
+                src={addmore}
+                className="add-img"
+                alt=""
+                onClick={addAdultTicket}
+              />
             </button>
           </span>
         </p>
@@ -83,18 +201,27 @@ export default function PurchasePage() {
           <span className="add-minus-span">
             <button className="add-minus-btn">
               {" "}
-              <img className="minus-img" src={minus} alt="" />
+              <img
+                className="minus-img"
+                src={minus}
+                alt=""
+                onClick={minusChilrenTicket}
+              />
             </button>
             {children}
             <button className="add-minus-btn">
-              <img className="add-img" src={addmore} alt="" />
+              <img
+                className="add-img"
+                src={addmore}
+                alt=""
+                onClick={addChilrenTicket}
+              />
             </button>
           </span>
         </p>
 
-        <p>Total £{total}</p>
+        <p>Total £{total.toFixed(2)}</p>
         <p>
-          {" "}
           <button className="buy-btn">PURCHASE</button>{" "}
         </p>
       </div>

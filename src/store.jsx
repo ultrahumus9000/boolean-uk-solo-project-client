@@ -228,7 +228,13 @@ const useStore = create((set, get) => ({
   setShoppingCartMovies: (data) => {
     set({ shoppingCartMovies: data });
   },
-  addTransactions: () => {},
+  addTransactions: (data) => {
+    return fetch(`${baseUrl}/transactions`)
+      .then((resp) => resp.json())
+      .then(() => {
+        return "";
+      });
+  },
 }));
 
 export default useStore;

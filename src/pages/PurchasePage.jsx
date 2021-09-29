@@ -244,7 +244,9 @@ export default function PurchasePage() {
 
         <p>Total £{total.toFixed(2)}</p>
         <p>
-          <button className="buy-btn">PURCHASE</button>{" "}
+          <button className="buy-btn" onClick={handleSubmit}>
+            PURCHASE
+          </button>{" "}
         </p>
       </div>
     </div>

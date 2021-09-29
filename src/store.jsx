@@ -229,7 +229,15 @@ const useStore = create((set, get) => ({
     set({ shoppingCartMovies: data });
   },
   addTransactions: (data) => {
-    return fetch(`${baseUrl}/transactions`)
+    return fetch(`${baseUrl}/transactions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify(data),
+      credentials: "include",
+    })
       .then((resp) => resp.json())
       .then(() => {
         return "";

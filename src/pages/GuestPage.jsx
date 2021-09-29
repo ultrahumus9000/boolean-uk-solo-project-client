@@ -1,5 +1,5 @@
 import useStore from "../store";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import EditUserForm from "../components/EditUserForm";
 import Loading from "../components/Loading";
 import EditGuestPassword from "../components/EditGuestPassword";
@@ -9,8 +9,6 @@ export default function GuestPage() {
   const [editStatus, setEditStatus] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
   console.log("currentUser", currentUser);
-
-  // useEffect(() => {}, [currentUser.role]);
 
   function toggleEditInfo() {
     setEditStatus(!editStatus);

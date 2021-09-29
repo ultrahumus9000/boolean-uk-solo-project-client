@@ -224,6 +224,11 @@ const useStore = create((set, get) => ({
         fetchOutDatedMovies();
       });
   },
+  shoppingCartMovies: {},
+  setShoppingCartMovies: (data) => {
+    set({ shoppingCartMovies: data });
+  },
+  addTransactions: () => {},
 }));
 
 export default useStore;

@@ -239,6 +239,16 @@ const useStore = create((set, get) => ({
       credentials: "include",
     }).then((resp) => resp.json());
   },
+  revenue: 0,
+  getRevenue: () => {
+    return fetch(`${baseUrl}/transactions/revenue`, {
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((revenue) => {
+        set({ revenue });
+      });
+  },
 }));
 
 export default useStore;

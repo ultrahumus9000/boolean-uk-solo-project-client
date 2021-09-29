@@ -9,12 +9,19 @@ export default function CinemaInfo() {
 
   const policy = useStore((store) => store.policy);
   const getPolicy = useStore((store) => store.getPolicy);
+  const revenue = useStore((store) => store.revenue);
+  const getRevenue = useStore((store) => store.getRevenue);
 
   useEffect(() => {
     getPolicy();
+    getRevenue();
   }, []);
 
-  if (cinema.staff === undefined || policy.adultPrice === undefined) {
+  if (
+    cinema.staff === undefined ||
+    policy.adultPrice === undefined ||
+    revenue === 0
+  ) {
     return <Loading />;
   }
   return (
@@ -48,7 +55,7 @@ export default function CinemaInfo() {
         </span>
         <span>capacity: {cinema.capacity}</span>
         <span>screening: {cinema.screening}</span>
-        <span>Revenue</span>
+        <span>Revenue £{revenue[0]._sum.total}</span>
       </section>
     </div>
   );

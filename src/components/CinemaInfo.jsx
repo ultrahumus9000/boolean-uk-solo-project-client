@@ -6,7 +6,6 @@ import Loading from "./Loading";
 
 export default function CinemaInfo() {
   const cinema = useStore((store) => store.cinema);
-
   const policy = useStore((store) => store.policy);
   const getPolicy = useStore((store) => store.getPolicy);
   const revenue = useStore((store) => store.revenue);

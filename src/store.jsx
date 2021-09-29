@@ -173,27 +173,6 @@ const useStore = create((set, get) => ({
         });
       });
   },
-  addToDatabase: (data) => {
-    fetch(`${baseUrl}/movies`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        credentials: "include",
-      },
-      body: JSON.stringify(data),
-      credentials: "include",
-    })
-      .then((resp) => resp.json())
-      .then(() => {
-        const fetchAllMovies = get().fetchAllMovies;
-        fetchAllMovies();
-      })
-      .then(() => {
-        alert("you added film into database successfully");
-        const fetchRecommendMovies = get().fetchRecommendMovies;
-        fetchRecommendMovies();
-      });
-  },
   outdatedMovies: [],
   fetchOutDatedMovies: () => {
     fetch(`${baseUrl}/movies`, {
@@ -210,6 +189,32 @@ const useStore = create((set, get) => ({
         }
       });
   },
+  addToDatabase: (data) => {
+    fetch(`${baseUrl}/movies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify(data),
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then(() => {
+        const fetchAllMovies = get().fetchAllMovies;
+        fetchAllMovies();
+      })
+      .then(() => {
+        const fetchOutDatedMovies = get().fetchOutDatedMovies;
+        fetchOutDatedMovies();
+      })
+      .then(() => {
+        alert("you added film into database successfully");
+        const fetchRecommendMovies = get().fetchRecommendMovies;
+        fetchRecommendMovies();
+      });
+  },
+
   deleteToDatabase: (id) => {
     fetch(`${baseUrl}/movies/${id}`, {
       method: "DELETE",

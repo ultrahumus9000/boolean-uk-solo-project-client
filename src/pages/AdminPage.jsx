@@ -19,6 +19,7 @@ export default function AdminPage() {
     return <Loading />;
   }
 
+  // console.log("todayMovies", todayMovies);
   return (
     <div className="admin-div">
       <section className="event">

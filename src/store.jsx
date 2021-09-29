@@ -237,11 +237,7 @@ const useStore = create((set, get) => ({
       },
       body: JSON.stringify(data),
       credentials: "include",
-    })
-      .then((resp) => resp.json())
-      .then(() => {
-        return "";
-      });
+    }).then((resp) => resp.json());
   },
 }));
 

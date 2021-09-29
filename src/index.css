@@ -13,7 +13,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
 }
-
+.receipt-section {
+  padding: 10px;
+  height: 60vh;
+  background-color: #00000090;
+  width: 98%;
+  position: absolute;
+  display: grid;
+  place-content: center;
+}
+.modal {
+  background-image: url("https://thumbs.dreamstime.com/b/online-cinema-art-movie-watching-popcorn-film-strip-cinematograph-concept-vintage-retro-colors-vector-illustration-86688861.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 35vh;
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  padding: 5px;
+}
+.receipt-section p {
+  background-color: #f0f8ff40;
+  color: #ff6347;
+  text-shadow: 1px 1px 1px black;
+  padding: 5px;
+}
 .waiting-div {
   position: absolute;
   height: 100vh;

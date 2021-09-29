@@ -7,6 +7,7 @@ import minus from "../asset/minus.svg";
 
 export default function PurchasePage() {
   const shoppingCartMovies = useStore((store) => store.shoppingCartMovies);
+  const [showReceipt, setShowReceipt] = useState(false);
   const [showtime, setShowtime] = useState("");
   let { movie, adult, children, total, policy } = shoppingCartMovies;
 
@@ -20,9 +21,11 @@ export default function PurchasePage() {
 
   const date = new Date().toISOString().slice(11, 13);
 
-  const filteredMovieAgendas = movie.agendas.filter(
-    (agenda) => agenda.showTime.slice(11, 13) >= date
-  );
+  console.log("new Date().toISOString()", new Date().toISOString());
+
+  const filteredMovieAgendas = movie.agendas.filter((agenda) => {
+    return agenda.showTime.slice(11, 13) > date;
+  });
 
   if (!shoppingCartMovies.movie) {
     return <Loading />;
@@ -30,14 +33,13 @@ export default function PurchasePage() {
 
   if (filteredMovieAgendas.length === 0) {
     alert("not show today");
-    return <Loading />;
     history.push("/");
+    return <Loading />;
   }
-
+  let selectedAgenda = filteredMovieAgendas.find((agenda) =>
+    agenda.showTime.includes(showtime)
+  );
   function handleSubmit() {
-    const selectedAgenda = filteredMovieAgendas.find((agenda) =>
-      agenda.showTime.includes(showtime)
-    );
     const newTransactionInfo = {
       policyId: policy.id,
       movieId: movie.id,
@@ -47,7 +49,12 @@ export default function PurchasePage() {
     };
 
     addTransactions(newTransactionInfo).then(() => {
-      history.push("/");
+      setShowtime("");
+      setShowReceipt(true);
+      setTimeout(() => {
+        history.push("/");
+        setShowReceipt(false);
+      }, 5000);
     });
   }
 
@@ -150,104 +157,118 @@ export default function PurchasePage() {
   }
 
   return (
-    <div className="purchase-section">
-      <div className="film-card">
-        <img src={movie.poster} alt="" />
-        <div className="movie-info">
-          <p className={`${movie.genre} movie-features `}>{movie.genre}</p>
-          <p className="movie-date">Release Date {movie.releaseDate}</p>
-          <p className="movie-title">{movie.title}</p>
-          <p className="movie-overview">Overview: {movie.overview}</p>
-          <p>
-            <span className="movie-duration"> {movie.duration}</span>{" "}
-          </p>
-          <section className="time-selection">
-            <span className="span-show-time time-option-label">
-              Select Show Time
-            </span>
-
-            <ul className="time-section">
-              {filteredMovieAgendas.map((agenda, index) => (
-                <li key={index} className="time-list">
-                  <label
-                    className={`time-list-label ${
-                      showtime === agenda.showTime
-                        ? "time-list-label-checked"
-                        : null
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      className="time-list-input"
-                      onClick={handleChange}
-                      value={agenda.showTime}
-                    />
-                    {agenda.showTime.slice(11, 16)}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </section>
+    <div>
+      {showReceipt ? (
+        <div className="receipt-section">
+          <div className="modal">
+            <p>Total £{total}</p>
+            <p>Tickets {totalQuantity}</p>
+            <p>ShowTime {selectedAgenda.showTime.slice(11, 16)}</p>
+            <p>Screening {selectedAgenda.screening}</p>
+            <p>Enjoy Your Movie,Reciept has sent to your email</p>
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      <div className="shopping-cart">
-        <p>
-          Buy any {policy.condition} tickets, get {policy.discount}%discount,
-          apply automatically
-        </p>
-        <p className="price-p">
-          <td className="price-tag">Adult £{policy.adultPrice} </td>
-          <span className="add-minus-span">
-            <button className="add-minus-btn">
-              <img
-                className="minus-img"
-                src={minus}
-                alt=""
-                onClick={minusAdultTicket}
-              />
-            </button>
-            {adult}
-            <button className="add-minus-btn">
-              <img
-                src={addmore}
-                className="add-img"
-                alt=""
-                onClick={addAdultTicket}
-              />
-            </button>
-          </span>
-        </p>
-        <p className="price-p">
-          <td className="price-tag">Child £{policy.childPrice} </td>
-          <span className="add-minus-span">
-            <button className="add-minus-btn">
-              {" "}
-              <img
-                className="minus-img"
-                src={minus}
-                alt=""
-                onClick={minusChilrenTicket}
-              />
-            </button>
-            {children}
-            <button className="add-minus-btn">
-              <img
-                className="add-img"
-                src={addmore}
-                alt=""
-                onClick={addChilrenTicket}
-              />
-            </button>
-          </span>
-        </p>
+      <div className="purchase-section">
+        <div className="film-card">
+          <img src={movie.poster} alt="" />
+          <div className="movie-info">
+            <p className={`${movie.genre} movie-features `}>{movie.genre}</p>
+            <p className="movie-date">Release Date {movie.releaseDate}</p>
+            <p className="movie-title">{movie.title}</p>
+            <p className="movie-overview">Overview: {movie.overview}</p>
+            <p>
+              <span className="movie-duration"> {movie.duration}</span>{" "}
+            </p>
+            <section className="time-selection">
+              <span className="span-show-time time-option-label">
+                Select Show Time
+              </span>
 
-        <p>Total £{total.toFixed(2)}</p>
-        <p>
-          <button className="buy-btn" onClick={handleSubmit}>
-            PURCHASE
-          </button>{" "}
-        </p>
+              <ul className="time-section">
+                {filteredMovieAgendas.map((agenda, index) => (
+                  <li key={index} className="time-list">
+                    <label
+                      className={`time-list-label ${
+                        showtime === agenda.showTime
+                          ? "time-list-label-checked"
+                          : null
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        className="time-list-input"
+                        onClick={handleChange}
+                        value={agenda.showTime}
+                      />
+                      {agenda.showTime.slice(11, 16)}
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+
+        <div className="shopping-cart">
+          <p>
+            Buy any {policy.condition} tickets, get {policy.discount}
+            %discount, apply automatically
+          </p>
+          <p className="price-p">
+            <td className="price-tag">Adult £{policy.adultPrice} </td>
+            <span className="add-minus-span">
+              <button className="add-minus-btn">
+                <img
+                  className="minus-img"
+                  src={minus}
+                  alt=""
+                  onClick={minusAdultTicket}
+                />
+              </button>
+              {adult}
+              <button className="add-minus-btn">
+                <img
+                  src={addmore}
+                  className="add-img"
+                  alt=""
+                  onClick={addAdultTicket}
+                />
+              </button>
+            </span>
+          </p>
+          <p className="price-p">
+            <td className="price-tag">Child £{policy.childPrice} </td>
+            <span className="add-minus-span">
+              <button className="add-minus-btn">
+                {" "}
+                <img
+                  className="minus-img"
+                  src={minus}
+                  alt=""
+                  onClick={minusChilrenTicket}
+                />
+              </button>
+              {children}
+              <button className="add-minus-btn">
+                <img
+                  className="add-img"
+                  src={addmore}
+                  alt=""
+                  onClick={addChilrenTicket}
+                />
+              </button>
+            </span>
+          </p>
+
+          <p>Total £{total.toFixed(2)}</p>
+          <p>
+            <button className="buy-btn" onClick={handleSubmit}>
+              PURCHASE
+            </button>{" "}
+          </p>
+        </div>
       </div>
     </div>
   );

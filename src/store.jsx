@@ -1,6 +1,6 @@
 import create from "zustand";
 
-let baseUrl = process.env.API_URL;
+let baseUrl = process.env.REACT_APP_API_URL;
 
 const generalGere = ["Adventure", "Fantasy", "Romance", "Comedy", "Tradgedy"];
 const showTime = ["90 mins", "100 mins", "120 mins"];

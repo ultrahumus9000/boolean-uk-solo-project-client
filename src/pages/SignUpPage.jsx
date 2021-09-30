@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
 
-const api = process.env.API_URL;
+const api = process.env.REACT_APP_API_URL;
 
 export default function SignUpPage() {
   const history = useHistory();

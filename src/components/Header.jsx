@@ -3,7 +3,7 @@ import movie from "../asset/movie.svg";
 import user from "../asset/user.svg";
 import admin from "../asset/admin.svg";
 import useStore from "../store";
-const api = process.env.API_URL;
+const api = process.env.REACT_APP_API_URL;
 export default function Header() {
   const currentUser = useStore((store) => store.currentUser);
   const setCurrentUser = useStore((store) => store.setCurrentUser);

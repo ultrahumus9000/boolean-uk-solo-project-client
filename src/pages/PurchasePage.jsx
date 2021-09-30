@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import addmore from "../asset/addmore.svg";
 import minus from "../asset/minus.svg";
 import StripeCheckout from "react-stripe-checkout";
-const api = process.env.API_URL;
+const api = process.env.REACT_APP_API_URL;
 
 export default function PurchasePage() {
   const shoppingCartMovies = useStore((store) => store.shoppingCartMovies);

@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import eyeclose from "../asset/eyeclose.svg";
 import eyeopen from "../asset/eyeopen.svg";
 import useStore from "../store";
-const api = process.env.API_URL;
+const api = process.env.REACT_APP_API_URL;
 
 export default function LoginPage() {
   const [seePassword, setSeePassword] = useState(false);

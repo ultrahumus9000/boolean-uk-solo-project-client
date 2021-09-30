@@ -15,9 +15,9 @@ export default function AdminPage() {
     fetchTodayMovies();
   }, []);
 
-  if (todayMovies.length === 0) {
-    return <Loading />;
-  }
+  // if (todayMovies.length === 0) {
+  //   return <Loading />;
+  // }
 
   // console.log("todayMovies", todayMovies);
   return (
@@ -25,9 +25,9 @@ export default function AdminPage() {
       <section className="event">
         <p className="board-p">Films for Today</p>
         <section className="event-on-day">
-          {todayMovies.map((movie, index) => (
+          {/* {todayMovies.map((movie, index) => (
             <SimpleFilmCard key={index} movie={movie} />
-          ))}
+          ))} */}
         </section>
       </section>
       <section className="recomadation-card">

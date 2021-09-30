@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Nos Cinema: this is a online booking/management web application for cinema where general guests can see most popular films, buy tickets, modify their infomation and admin can review the newsest cinema and manage their database and check all essential infomation from admin dashboard.
+
 ## Available Scripts
 
 In the project directory, you can run:

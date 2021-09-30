@@ -26,7 +26,7 @@ export default function CinemaInfo() {
   return (
     <div className="cinema-info">
       <p className="cinema-dashboard-p">Nos Cinema DashBoard</p>
-      <div className="policy-section">
+      {/* <div className="policy-section">
         <section className="policy-price-section">
           <span>Adult: £{policy.adultPrice}</span>
           <span>Child: £{policy.childPrice}</span>
@@ -55,7 +55,7 @@ export default function CinemaInfo() {
         <span>capacity: {cinema.capacity}</span>
         <span>screening: {cinema.screening}</span>
         <span>Revenue £{revenue[0]._sum.total}</span>
-      </section>
+      </section> */}
     </div>
   );
 }

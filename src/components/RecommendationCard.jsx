@@ -12,14 +12,14 @@ export default function RecommedationCard() {
     fetchRecommendMovies();
   }, []);
 
-  if (newMovies.length === 0) {
-    return <Loading />;
-  }
+  // if (newMovies.length === 0) {
+  //   return <Loading />;
+  // }
   return (
     <div>
-      {newMovies.map((movie) => {
+      {/* {newMovies.map((movie) => {
         return <RecommandFilm movie={movie} />;
-      })}
+      })} */}
     </div>
   );
 }

@@ -16,13 +16,13 @@ export default function CinemaInfo() {
     getRevenue();
   }, []);
 
-  if (
-    cinema.staff === undefined ||
-    policy.adultPrice === undefined ||
-    revenue === 0
-  ) {
-    return <Loading />;
-  }
+  // if (
+  //   cinema.staff === undefined ||
+  //   policy.adultPrice === undefined ||
+  //   revenue === 0
+  // ) {
+  //   return <Loading />;
+  // }
   return (
     <div className="cinema-info">
       <p className="cinema-dashboard-p">Nos Cinema DashBoard</p>

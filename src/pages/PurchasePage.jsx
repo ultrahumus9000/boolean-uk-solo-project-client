@@ -1,9 +1,11 @@
+import React from "react";
 import Loading from "../components/Loading";
 import useStore from "../store";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import addmore from "../asset/addmore.svg";
 import minus from "../asset/minus.svg";
+import StripeCheckout from "react-stripe-checkout";
 
 export default function PurchasePage() {
   const shoppingCartMovies = useStore((store) => store.shoppingCartMovies);
@@ -21,10 +23,8 @@ export default function PurchasePage() {
 
   const date = new Date().toISOString().slice(11, 13);
 
-  console.log("new Date().toISOString()", new Date().toISOString());
-
   const filteredMovieAgendas = movie.agendas.filter((agenda) => {
-    return agenda.showTime.slice(11, 13) > date;
+    return agenda.showTime.slice(11, 13) > 12;
   });
 
   if (!shoppingCartMovies.movie) {
@@ -39,7 +39,27 @@ export default function PurchasePage() {
   let selectedAgenda = filteredMovieAgendas.find((agenda) =>
     agenda.showTime.includes(showtime)
   );
+  const makePayment = (token) => {
+    // console.log("token", token);
+    fetch(`http://localhost:4000/payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        credentials: "include",
+      },
+      body: JSON.stringify({ token, total }),
+      credentials: "include",
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        console.log("resp", resp);
+      });
+  };
+
   function handleSubmit() {
+    if (total === 0) {
+      return;
+    }
     const newTransactionInfo = {
       policyId: policy.id,
       movieId: movie.id,
@@ -267,6 +287,14 @@ export default function PurchasePage() {
             <button className="buy-btn" onClick={handleSubmit}>
               PURCHASE
             </button>{" "}
+            <StripeCheckout
+              stripeKey={process.env.stripeKey}
+              token={makePayment}
+              amount={total * 100}
+              name="Buy Movie"
+            >
+              <button className="buy-btn">PURCHASE</button>
+            </StripeCheckout>
           </p>
         </div>
       </div>

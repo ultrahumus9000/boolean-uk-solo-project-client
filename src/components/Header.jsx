@@ -3,14 +3,14 @@ import movie from "../asset/movie.svg";
 import user from "../asset/user.svg";
 import admin from "../asset/admin.svg";
 import useStore from "../store";
-
+const api = process.env.API_URL;
 export default function Header() {
   const currentUser = useStore((store) => store.currentUser);
   const setCurrentUser = useStore((store) => store.setCurrentUser);
   const history = useHistory();
 
   function handleLogOut() {
-    fetch("http://localhost:4000/logout", {
+    fetch(`${api}/logout`, {
       credentials: "include",
     }).then(() => {
       setCurrentUser({});

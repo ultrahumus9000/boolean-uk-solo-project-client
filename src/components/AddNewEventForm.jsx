@@ -26,6 +26,7 @@ const initialEventForm = {
   movies: [],
   repeat: "none",
 };
+const api = process.env.API_URL;
 export default function AddNewEventForm() {
   const [createNewEvent, setCreateNewEvent] = useState(false);
   const movies = useStore((store) => store.movies);
@@ -56,7 +57,7 @@ export default function AddNewEventForm() {
   }, []);
 
   function postNewEvent(form) {
-    return fetch(`http://localhost:4000/events`, {
+    return fetch(`${api}/events`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

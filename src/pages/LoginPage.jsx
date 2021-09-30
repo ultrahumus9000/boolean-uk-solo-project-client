@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import eyeclose from "../asset/eyeclose.svg";
 import eyeopen from "../asset/eyeopen.svg";
 import useStore from "../store";
+const api = process.env.API_URL;
 
 export default function LoginPage() {
   const [seePassword, setSeePassword] = useState(false);
@@ -11,7 +12,7 @@ export default function LoginPage() {
   const history = useHistory();
 
   function loginUser(userCreds) {
-    return fetch("http://localhost:4000/login", {
+    return fetch(`${api}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

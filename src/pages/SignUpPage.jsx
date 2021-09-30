@@ -1,5 +1,7 @@
 import { useHistory } from "react-router";
 
+const api = process.env.API_URL;
+
 export default function SignUpPage() {
   const history = useHistory();
 
@@ -18,7 +20,7 @@ export default function SignUpPage() {
       cinemaId: 1,
     };
 
-    fetch("http://localhost:4000/user", {
+    fetch(`${api}/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

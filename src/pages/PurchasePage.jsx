@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import addmore from "../asset/addmore.svg";
 import minus from "../asset/minus.svg";
 import StripeCheckout from "react-stripe-checkout";
+const api = process.env.API_URL;
 
 export default function PurchasePage() {
   const shoppingCartMovies = useStore((store) => store.shoppingCartMovies);
@@ -39,9 +40,10 @@ export default function PurchasePage() {
   let selectedAgenda = filteredMovieAgendas.find((agenda) =>
     agenda.showTime.includes(showtime)
   );
+
   const makePayment = (token) => {
     // console.log("token", token);
-    fetch(`http://localhost:4000/payment`, {
+    fetch(`${api}/payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

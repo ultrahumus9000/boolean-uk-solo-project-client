@@ -25,7 +25,7 @@ export default function PurchasePage() {
   const date = new Date().toISOString().slice(11, 13);
 
   const filteredMovieAgendas = movie.agendas.filter((agenda) => {
-    return agenda.showTime.slice(11, 13) > 12;
+    return agenda.showTime.slice(11, 13) > date;
   });
 
   if (!shoppingCartMovies.movie) {

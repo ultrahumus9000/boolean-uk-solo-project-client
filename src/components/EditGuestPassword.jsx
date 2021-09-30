@@ -27,6 +27,7 @@ export default function EditGuestPassword({ toggle }) {
     console.log(originPassword, newPassword);
     if (originPassword === newPassword) {
       alert("YOU CAN NOT CHOOSE SAME PASSWORD AGAIN");
+      return;
     }
     updateGuestPassword({ originPassword, newPassword }).then(() => {
       toggle();

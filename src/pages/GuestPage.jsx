@@ -8,7 +8,6 @@ export default function GuestPage() {
   const currentUser = useStore((store) => store.currentUser);
   const [editStatus, setEditStatus] = useState(false);
   const [editPassword, setEditPassword] = useState(false);
-  console.log("currentUser", currentUser);
 
   function toggleEditInfo() {
     setEditStatus(!editStatus);

@@ -42,10 +42,6 @@ export default function PurchasePage() {
   );
 
   const makePayment = (token) => {
-    // console.log("token", token);
-    if (totalQuantity <= 0) {
-      return;
-    }
     fetch(`${api}/payment`, {
       method: "POST",
       headers: {
@@ -292,14 +288,16 @@ export default function PurchasePage() {
             <button className="buy-btn" onClick={handleSubmit}>
               PURCHASE
             </button>{" "}
-            <StripeCheckout
-              stripeKey={process.env.REACT_APP_STRIPE_KEY}
-              token={makePayment}
-              amount={total * 100}
-              name="Buy Movie"
-            >
-              <button className="buy-btn green">Real Buy</button>
-            </StripeCheckout>
+            {totalQuantity ? (
+              <StripeCheckout
+                stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                token={makePayment}
+                amount={total * 100}
+                name="Buy Movie"
+              >
+                <button className="buy-btn green">Real Buy</button>
+              </StripeCheckout>
+            ) : null}
           </p>
         </div>
       </div>

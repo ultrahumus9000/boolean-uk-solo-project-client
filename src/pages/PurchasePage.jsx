@@ -42,7 +42,7 @@ export default function PurchasePage() {
   );
 
   const makePayment = (token) => {
-    fetch(`${api}/payment`, {
+    fetch(`${api}/charges`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

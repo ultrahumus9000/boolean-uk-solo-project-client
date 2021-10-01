@@ -72,7 +72,7 @@ export default function AddNewEventForm() {
           toggleSucceed();
           fetchLastEvent();
           const timeoutId = setTimeout(() => {
-            displayWaiting();
+            doNotDisplayWaiting();
           }, 1000);
           clearTimeout(timeoutId);
         } else {

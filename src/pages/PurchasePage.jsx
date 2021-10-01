@@ -57,8 +57,11 @@ export default function PurchasePage() {
         setShowReceipt(true);
       })
       .then(() => {
-        setShowReceipt(false);
-        history.push("/");
+        setShowReceipt(true);
+        setTimeout(() => {
+          history.push("/");
+          setShowReceipt(false);
+        }, 5000);
       });
   };
 

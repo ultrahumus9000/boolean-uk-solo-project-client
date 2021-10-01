@@ -43,6 +43,9 @@ export default function PurchasePage() {
 
   const makePayment = (token) => {
     // console.log("token", token);
+    if (totalQuantity <= 0) {
+      return;
+    }
     fetch(`${api}/payment`, {
       method: "POST",
       headers: {
@@ -295,7 +298,7 @@ export default function PurchasePage() {
               amount={total * 100}
               name="Buy Movie"
             >
-              <button className="buy-btn">PURCHASE</button>
+              <button className="buy-btn green">Real Buy</button>
             </StripeCheckout>
           </p>
         </div>

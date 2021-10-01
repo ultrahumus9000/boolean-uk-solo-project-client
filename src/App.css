@@ -186,12 +186,20 @@ main {
   padding: 5px 10px;
   font-weight: bolder;
 }
+
 .buy-btn:hover {
   filter: brightness(1.1);
 }
 .buy-btn:active {
   filter: brightness(1.1);
 }
+.green {
+  border: 2px dashed teal;
+  background-color: mediumaquamarine;
+  padding: 5px 10px;
+  font-weight: bolder;
+}
+
 /* admin page */
 .admin-div {
   color: #ffffff;

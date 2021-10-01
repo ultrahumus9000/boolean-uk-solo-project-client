@@ -37,7 +37,6 @@ export default function AddNewEventForm() {
   const [eventForm, setEventForm] = useState(initialEventForm);
   const waiting = useStore((store) => store.waiting);
   const toggleFail = useStore((store) => store.toggleFail);
-  const toggleWaiting = useStore((store) => store.toggleWaiting);
   const displayWaiting = useStore((store) => store.displayWaiting);
   const doNotDisplayWaiting = useStore((store) => store.doNotDisplayWaiting);
   const toggleSucceed = useStore((store) => store.toggleSucceed);
@@ -50,7 +49,7 @@ export default function AddNewEventForm() {
     showTime: ["11:00", "14:00", "17:00", "20:00"],
     screening: cinema.screening,
   };
-
+  console.log("waiting", waiting);
   useEffect(() => {
     fetchAllMovies();
     getCinemaInfo();
@@ -71,16 +70,14 @@ export default function AddNewEventForm() {
         if (typeof resp === "string" && resp.includes("succeed")) {
           toggleSucceed();
           fetchLastEvent();
-          const timeoutId = setTimeout(() => {
+          setTimeout(() => {
             doNotDisplayWaiting();
           }, 1000);
-          clearTimeout(timeoutId);
         } else {
           toggleFail();
-          const timeoutId = setTimeout(() => {
+          setTimeout(() => {
             doNotDisplayWaiting();
           }, 1000);
-          clearTimeout(timeoutId);
         }
       });
   }
@@ -136,7 +133,7 @@ export default function AddNewEventForm() {
 
     let modifiedFormData = { ...eventForm, ...initialAgenda };
 
-    toggleWaiting();
+    displayWaiting();
 
     postNewEvent(modifiedFormData).then(() => {
       setEventForm(initialEventForm);

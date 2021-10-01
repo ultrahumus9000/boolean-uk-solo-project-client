@@ -75,9 +75,6 @@ const useStore = create((set, get) => ({
       });
   },
   waiting: false,
-  toggleWaiting: () => {
-    set({ waiting: !get().waiting });
-  },
   displayWaiting: () => {
     set({ waiting: true });
   },

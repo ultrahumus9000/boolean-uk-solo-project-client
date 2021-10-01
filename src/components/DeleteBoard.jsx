@@ -12,12 +12,12 @@ export default function DeleteBoard() {
     fetchOutDatedMovies();
   }, []);
 
-  if (outdatedMovies.length === 0) return <Loading />;
   return (
     <>
-      {outdatedMovies.map((movie, index) => (
-        <DeleteFilm key={index} movie={movie} />
-      ))}
+      {outdatedMovies.length &&
+        outdatedMovies.map((movie, index) => (
+          <DeleteFilm key={index} movie={movie} />
+        ))}
     </>
   );
 }

@@ -290,7 +290,7 @@ export default function PurchasePage() {
               PURCHASE
             </button>{" "}
             <StripeCheckout
-              stripeKey={process.env.stripeKey}
+              stripeKey={process.env.REACT_APP_STRIPE_KEY}
               token={makePayment}
               amount={total * 100}
               name="Buy Movie"

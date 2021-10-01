@@ -78,6 +78,13 @@ const useStore = create((set, get) => ({
   toggleWaiting: () => {
     set({ waiting: !get().waiting });
   },
+  displayWaiting: () => {
+    set({ waiting: true });
+  },
+  doNotDisplayWaiting: () => {
+    set({ waiting: false });
+  },
+
   succeed: false,
   toggleSucceed: () => {
     set({ succeed: !get().succeed });

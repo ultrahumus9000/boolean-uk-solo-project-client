@@ -38,12 +38,13 @@ export default function AddNewEventForm() {
   const waiting = useStore((store) => store.waiting);
   const toggleFail = useStore((store) => store.toggleFail);
   const toggleWaiting = useStore((store) => store.toggleWaiting);
+  const displayWaiting = useStore((store) => store.displayWaiting);
+  const doNotDisplayWaiting = useStore((store) => store.doNotDisplayWaiting);
   const toggleSucceed = useStore((store) => store.toggleSucceed);
   const lastestEvent = useStore((store) => store.lastestEvent);
   const fetchLastEvent = useStore((store) => store.fetchLastEvent);
   let modifiedLastDate = lastestEvent.slice(0, 10);
 
-  console.log("eventForm", eventForm);
   const initialAgenda = {
     quantity: cinema.capacity,
     showTime: ["11:00", "14:00", "17:00", "20:00"],
@@ -71,13 +72,13 @@ export default function AddNewEventForm() {
           toggleSucceed();
           fetchLastEvent();
           const timeoutId = setTimeout(() => {
-            toggleWaiting();
+            displayWaiting();
           }, 1000);
           clearTimeout(timeoutId);
         } else {
           toggleFail();
           const timeoutId = setTimeout(() => {
-            toggleWaiting();
+            doNotDisplayWaiting();
           }, 1000);
           clearTimeout(timeoutId);
         }

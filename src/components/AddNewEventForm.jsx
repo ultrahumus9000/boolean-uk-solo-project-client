@@ -70,14 +70,16 @@ export default function AddNewEventForm() {
         if (typeof resp === "string" && resp.includes("succeed")) {
           toggleSucceed();
           fetchLastEvent();
-          setTimeout(() => {
+          const timeoutId = setTimeout(() => {
             toggleWaiting();
           }, 1000);
+          clearTimeout(timeoutId);
         } else {
           toggleFail();
-          setTimeout(() => {
+          const timeoutId = setTimeout(() => {
             toggleWaiting();
           }, 1000);
+          clearTimeout(timeoutId);
         }
       });
   }

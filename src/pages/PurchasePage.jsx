@@ -54,6 +54,11 @@ export default function PurchasePage() {
       .then((resp) => resp.json())
       .then((resp) => {
         console.log("resp", resp);
+        setShowReceipt(true);
+      })
+      .then(() => {
+        setShowReceipt(false);
+        history.push("/");
       });
   };
 

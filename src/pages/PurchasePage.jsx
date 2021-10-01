@@ -63,7 +63,7 @@ export default function PurchasePage() {
   };
 
   function handleSubmit() {
-    if (total === 0) {
+    if (total === 0 || showtime === "") {
       return;
     }
     const newTransactionInfo = {
@@ -293,7 +293,7 @@ export default function PurchasePage() {
             <button className="buy-btn" onClick={handleSubmit}>
               PURCHASE
             </button>{" "}
-            {totalQuantity ? (
+            {totalQuantity && showtime ? (
               <StripeCheckout
                 stripeKey={process.env.REACT_APP_STRIPE_KEY}
                 token={makePayment}

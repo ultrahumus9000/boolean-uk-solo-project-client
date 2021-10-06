@@ -38,9 +38,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 ### Preview
 
-<img width="1431" alt="Screenshot 2021-10-06 at 14 43 51" src="https://user-images.githubusercontent.com/81304801/136222646-bef4319c-2651-42a6-b32f-5385178a614b.png">
 
 <img width="1439" alt="Screenshot 2021-10-06 at 14 43 38" src="https://user-images.githubusercontent.com/81304801/136222629-8ef0b7d3-d6e6-4d5c-9222-279227856ac4.png">
+
+Guest Page
+<img width="1431" alt="Screenshot 2021-10-06 at 14 43 51" src="https://user-images.githubusercontent.com/81304801/136222646-bef4319c-2651-42a6-b32f-5385178a614b.png">
 
 <img width="1434" alt="Screenshot 2021-10-06 at 14 44 06" src="https://user-images.githubusercontent.com/81304801/136222690-5f151ddb-0085-4c96-b581-d9cfdc495e90.png">
 

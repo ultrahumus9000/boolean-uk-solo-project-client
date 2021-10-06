@@ -48,6 +48,13 @@ Guest Page
 
 <img width="495" alt="Screenshot 2021-10-06 at 14 44 13" src="https://user-images.githubusercontent.com/81304801/136222719-f469398e-faeb-4999-a282-ffdc14cb0d38.png">
 
+Guest Purchase Section
+
+<img width="1440" alt="Screenshot 2021-10-06 at 14 51 43" src="https://user-images.githubusercontent.com/81304801/136224090-26a98468-2a9f-4941-a4f8-37caf41bbe82.png">
+
+<img width="1440" alt="Screenshot 2021-10-06 at 14 56 16" src="https://user-images.githubusercontent.com/81304801/136224126-ba71a23e-e2d1-4ddb-bbe4-9670a8c940f1.png">
+
+
 <img width="434" alt="Screenshot 2021-10-06 at 14 44 23" src="https://user-images.githubusercontent.com/81304801/136222735-7a79abbb-21e8-482f-b315-1d3de8680907.png">
 
 <img width="1429" alt="Screenshot 2021-10-06 at 14 44 42" src="https://user-images.githubusercontent.com/81304801/136222820-52bdb536-4bb4-496b-8577-91fdd43470bf.png">
@@ -59,5 +66,6 @@ Guest Page
 <img width="711" alt="Screenshot 2021-10-06 at 14 47 23" src="https://user-images.githubusercontent.com/81304801/136222916-8ee37485-4890-4a0a-ae40-396f6d020fd4.png">
 
 <img width="733" alt="Screenshot 2021-10-06 at 14 47 34" src="https://user-images.githubusercontent.com/81304801/136222939-0acfcce1-7f44-49bb-9078-9b9a1979b299.png">
+
 
 

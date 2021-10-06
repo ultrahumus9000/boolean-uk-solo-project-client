@@ -46,7 +46,11 @@ Guest Page
 
 <img width="1434" alt="Screenshot 2021-10-06 at 14 44 06" src="https://user-images.githubusercontent.com/81304801/136222690-5f151ddb-0085-4c96-b581-d9cfdc495e90.png">
 
+Guest Edit Info Form
 <img width="495" alt="Screenshot 2021-10-06 at 14 44 13" src="https://user-images.githubusercontent.com/81304801/136222719-f469398e-faeb-4999-a282-ffdc14cb0d38.png">
+
+Guest Edit Password Form
+<img width="434" alt="Screenshot 2021-10-06 at 14 44 23" src="https://user-images.githubusercontent.com/81304801/136222735-7a79abbb-21e8-482f-b315-1d3de8680907.png">
 
 Guest Purchase Section
 
@@ -54,9 +58,7 @@ Guest Purchase Section
 
 <img width="1440" alt="Screenshot 2021-10-06 at 14 56 16" src="https://user-images.githubusercontent.com/81304801/136224126-ba71a23e-e2d1-4ddb-bbe4-9670a8c940f1.png">
 
-
-<img width="434" alt="Screenshot 2021-10-06 at 14 44 23" src="https://user-images.githubusercontent.com/81304801/136222735-7a79abbb-21e8-482f-b315-1d3de8680907.png">
-
+Admin Arrangement 
 <img width="1429" alt="Screenshot 2021-10-06 at 14 44 42" src="https://user-images.githubusercontent.com/81304801/136222820-52bdb536-4bb4-496b-8577-91fdd43470bf.png">
 
 <img width="1433" alt="Screenshot 2021-10-06 at 14 45 04" src="https://user-images.githubusercontent.com/81304801/136222860-7230c9db-21cd-4469-9142-1fd103a97189.png">

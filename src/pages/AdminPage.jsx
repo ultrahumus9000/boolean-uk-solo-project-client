@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import AddNewEventForm from "../components/AddNewEventForm";
 import CinemaInfo from "../components/CinemaInfo";
 import DeleteBoard from "../components/DeleteBoard";
-import Loading from "../components/Loading";
 import RecommedationCard from "../components/RecommendationCard";
 import SimpleFilmCard from "../components/SimpleFilmCard";
 import useStore from "../store";
